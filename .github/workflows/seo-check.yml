@@ -1,0 +1,56 @@
+name: SEO Check
+
+on:
+  pull_request:
+    paths:
+      - 'content/**/*.md'
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/**/*.md'
+
+jobs:
+  seo-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run SEO Lint
+        run: npm run seo-lint
+
+      - name: Check Markdown formatting
+        run: npx markdownlint 'content/**/*.md' --config .markdownlint.json || true
+
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build application
+        run: npm run build
+
+      - name: Check sitemap generated
+        run: |
+          if [ ! -f "public/sitemap.xml" ]; then
+            echo "❌ sitemap.xml not generated"
+            exit 1
+          fi
+          echo "✅ sitemap.xml generated successfully"

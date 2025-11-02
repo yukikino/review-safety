@@ -1,0 +1,34 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dbeafe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="60" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="80" fill="#1e40af" opacity="0.1"/>
+  
+  <!-- Main content -->
+  <text x="600" y="250" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#1e40af" text-anchor="middle">
+    未入金・支払い催促
+  </text>
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#1e40af" text-anchor="middle">
+    実務ガイド
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="430" font-family="Arial, sans-serif" font-size="32" fill="#6b7280" text-anchor="middle">
+    催促メールから法的手続きまで、段階的に解説
+  </text>
+  
+  <!-- Domain -->
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="28" fill="#3b82f6" text-anchor="middle">
+    mibarai-guide.com
+  </text>
+</svg>

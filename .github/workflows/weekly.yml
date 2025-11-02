@@ -1,0 +1,60 @@
+name: Weekly Report
+
+on:
+  schedule:
+    # Every Monday at 01:00 UTC (10:00 JST)
+    - cron: '0 1 * * 1'
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  weekly-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate weekly report
+        run: npm run weekly-report
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DRY_RUN: 'false'
+
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start server
+        run: npm run start &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 -t 60000
+
+      - name: Check links
+        run: npm run check-links
+        continue-on-error: true
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+            -H 'Content-Type: application/json' \
+            -d '{"text":"⚠️ リンク切れが検出されました: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}'
