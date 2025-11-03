@@ -8,19 +8,19 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mibarai-guide.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: '未入金・支払い催促実務ガイド',
-    template: '%s | 未入金・支払い催促実務ガイド',
+    default: '低評価口コミ・クレーム対応マニュアル',
+    template: '%s | 口コミ対応マニュアル',
   },
-  description: '取引先からの未入金・支払い遅延に悩む方のための実務ガイド。催促メールのテンプレートから法的手続きまで、段階的な対応方法を解説します。',
-  keywords: ['未入金', '支払い催促', '催促メール', '内容証明', '債権回収', '支払督促', '少額訴訟'],
-  authors: [{ name: '未入金対応アドバイザー' }],
-  creator: '未入金・支払い催促実務ガイド',
-  publisher: '未入金・支払い催促実務ガイド',
+  description: 'Googleマップやホットペッパーの★1レビューへの返信テンプレートから削除依頼、法的対応まで。飲食店、美容クリニック、エステなど店舗オーナー向けの実務ガイド。',
+  keywords: ['口コミ対応', 'クレーム対応', '低評価レビュー', 'Googleマップ', 'ホットペッパー', '返信テンプレート', '削除依頼', '名誉毀損'],
+  authors: [{ name: '口コミ対応マニュアル編集部' }],
+  creator: '口コミ対応マニュアル',
+  publisher: '口コミ対応マニュアル',
   formatDetection: {
     email: false,
     address: false,
@@ -37,22 +37,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ja_JP',
     url: siteUrl,
-    title: '未入金・支払い催促実務ガイド',
-    description: '取引先からの未入金・支払い遅延に悩む方のための実務ガイド。催促メールのテンプレートから法的手続きまで、段階的な対応方法を解説します。',
-    siteName: '未入金・支払い催促実務ガイド',
+    title: '低評価口コミ・クレーム対応マニュアル',
+    description: 'Googleマップやホットペッパーの★1レビューへの返信テンプレートから削除依頼、法的対応まで。店舗オーナー向けの実務ガイド。',
+    siteName: '口コミ対応マニュアル',
     images: [
       {
         url: '/og-default.png',
         width: 1200,
         height: 630,
-        alt: '未入金・支払い催促実務ガイド',
+        alt: '低評価口コミ・クレーム対応マニュアル',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '未入金・支払い催促実務ガイド',
-    description: '取引先からの未入金・支払い遅延に悩む方のための実務ガイド',
+    title: '低評価口コミ・クレーム対応マニュアル',
+    description: 'Googleマップやホットペッパーの★1レビューへの返信テンプレートから削除依頼、法的対応まで',
     images: ['/og-default.png'],
   },
   robots: {
