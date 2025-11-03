@@ -1,6 +1,7 @@
 {
-  "name": "affiliate-template",
+  "name": "review-safety",
   "version": "0.1.0",
+  "description": "低評価口コミ・クレーム対応マニュアル - 店舗オーナー向け返信テンプレート＋対応フロー実務メディア",
   "private": true,
   "type": "module",
   "scripts": {

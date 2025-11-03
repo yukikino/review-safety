@@ -1,28 +1,20 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { getArticleBySlug, getArticleSlugs, getRelatedArticles } from '@/lib/markdown';
 import { ArticleSchema } from '@/components/article-schema';
 import { BreadcrumbSchema } from '@/components/breadcrumb-schema';
-import { CTASoft } from '@/components/cta-soft';
-import { CTAHard } from '@/components/cta-hard';
-import { CTAMixed } from '@/components/cta-mixed';
+import { CTAReputation } from '@/components/cta-reputation';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SidebarCTA } from '@/components/sidebar-cta';
 import { ArticleViewTracker } from '@/components/analytics/ArticleViewTracker';
-
-const FlowDiagram = dynamic(() => import('@/components/flow-diagram').then(mod => ({ default: mod.FlowDiagram })), {
-  loading: () => <div className="animate-pulse h-96 bg-gray-100 rounded-lg"></div>,
-  ssr: true,
-});
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const slugs = getArticleSlugs('guide');
+  const slugs = getArticleSlugs('escalation');
   return slugs.map((slug) => ({
     slug,
   }));
@@ -32,15 +24,15 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticleBySlug('guide', slug);
+  const article = await getArticleBySlug('escalation', slug);
 
   if (!article) {
     return {};
   }
 
   const { frontmatter } = article;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mibarai-guide.com';
-  const articleUrl = `${siteUrl}/guide/${slug}`;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
+  const articleUrl = `${siteUrl}/escalation/${slug}`;
   const ogImage = `${siteUrl}/og-default.png`;
 
   return {
@@ -77,9 +69,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function GuidePage({ params }: PageProps) {
+export default async function EscalationPage({ params }: PageProps) {
   const { slug } = await params;
-  const article = await getArticleBySlug('guide', slug);
+  const article = await getArticleBySlug('escalation', slug);
 
   if (!article) {
     notFound();
@@ -87,21 +79,11 @@ export default async function GuidePage({ params }: PageProps) {
 
   const { frontmatter, htmlContent } = article;
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mibarai-guide.com';
-  const articleUrl = `${siteUrl}/guide/${slug}`;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
+  const articleUrl = `${siteUrl}/escalation/${slug}`;
 
-  // frontmatterのctaプロパティに基づいてCTAコンポーネントを選択
-  const ctaType = frontmatter.cta || 'soft';
-
-  // フロー図の置換処理
-  const processedHtmlContent = htmlContent.replace(
-    /<!--\s*FLOW_DIAGRAM\s*-->/g,
-    '<div id="flow-diagram-placeholder"></div>'
-  );
-
-  // 関連記事の取得（タグベース）
   const relatedArticles = await getRelatedArticles(
-    'guide',
+    'escalation',
     slug,
     frontmatter.tags,
     3
@@ -117,8 +99,8 @@ export default async function GuidePage({ params }: PageProps) {
       <BreadcrumbSchema
         items={[
           { name: 'ホーム', url: '/' },
-          { name: '実務ガイド', url: '/guide' },
-          { name: frontmatter.title, url: `/guide/${slug}` },
+          { name: '強め案件対応', url: '/escalation' },
+          { name: frontmatter.title, url: `/escalation/${slug}` },
         ]}
       />
       <ArticleSchema
@@ -129,13 +111,11 @@ export default async function GuidePage({ params }: PageProps) {
         url={articleUrl}
       />
 
-      {/* Scroll progress bar - subtle */}
       <div className="scroll-progress" id="scroll-progress" style={{ width: '0%' }}></div>
 
       <div className="min-h-screen" style={{ background: 'var(--background-secondary)' }}>
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="grid lg:grid-cols-[1fr_280px] gap-8">
-            {/* メインコンテンツ */}
             <article>
               <header className="mb-8 card p-8 animate-fadeInUp">
                 <div className="flex gap-2 flex-wrap mb-6">
@@ -164,38 +144,18 @@ export default async function GuidePage({ params }: PageProps) {
               </header>
 
               <div className="card p-8 md:p-12 mb-8 animate-fadeInUp">
-                {processedHtmlContent.includes('flow-diagram-placeholder') ? (
-                  <div className="prose prose-lg max-w-none">
-                    {processedHtmlContent.split('<div id="flow-diagram-placeholder"></div>').map((part, index, array) => (
-                      <div key={index}>
-                        <div dangerouslySetInnerHTML={{ __html: part }} />
-                        {index < array.length - 1 && (
-                          <div className="my-8">
-                            <FlowDiagram />
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div
-                    className="prose prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ __html: processedHtmlContent }}
-                  />
-                )}
+                <div
+                  className="prose prose-lg max-w-none"
+                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                />
               </div>
 
-              {/* CTA表示（frontmatterのctaに基づいて条件分岐） */}
               <div className="animate-fadeInUp">
-                {ctaType === 'soft' && <CTASoft />}
-                {ctaType === 'hard' && <CTAHard />}
-                {ctaType === 'mixed' && <CTAMixed />}
+                <CTAReputation />
               </div>
             </article>
 
-            {/* サイドバー */}
             <aside className="space-y-6">
-              {/* ナビゲーション（固定） */}
               <div className="card p-6 sticky top-6">
                 <h3 className="font-bold mb-4 text-sm" style={{ color: 'var(--gray-900)' }}>
                   📖 ページ内ナビ
@@ -218,10 +178,8 @@ export default async function GuidePage({ params }: PageProps) {
                 </nav>
               </div>
 
-              {/* アフィリエイトCTA */}
               <SidebarCTA />
 
-              {/* 関連記事 */}
               {relatedArticles.length > 0 && (
                 <div className="card p-6">
                   <h3 className="font-bold mb-4 text-sm" style={{ color: 'var(--gray-900)' }}>
@@ -231,7 +189,7 @@ export default async function GuidePage({ params }: PageProps) {
                     {relatedArticles.map((related) => (
                       <Link
                         key={related.slug}
-                        href={`/guide/${related.slug}`}
+                        href={`/escalation/${related.slug}`}
                         className="block p-3 rounded-lg transition-colors hover:bg-gray-50 border border-gray-200"
                       >
                         <p className="text-xs font-semibold mb-1 line-clamp-2" style={{ color: 'var(--gray-900)' }}>
@@ -250,7 +208,6 @@ export default async function GuidePage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Scroll progress JavaScript */}
       <script
         dangerouslySetInnerHTML={{
           __html: `

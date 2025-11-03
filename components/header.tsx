@@ -5,7 +5,7 @@ export function Header() {
     <header className="bg-white border-b" style={{ borderColor: 'var(--gray-200)' }}>
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between max-w-7xl">
         <Link href="/" className="text-xl font-bold hover:opacity-80 transition-opacity" style={{ color: 'var(--primary-blue)' }}>
-          未入金・催促ガイド
+          口コミ対応マニュアル
         </Link>
         <div className="flex gap-6 text-sm">
           <Link href="/" className="font-medium transition-all hover:underline hover:text-gray-900" style={{
