@@ -48,7 +48,7 @@ export const trackCTAImpression = ({
   position,
   articleSlug,
 }: {
-  ctaType: 'soft' | 'hard' | 'mixed' | 'factoring' | 'accounting';
+  ctaType: 'soft' | 'hard' | 'mixed' | 'factoring' | 'accounting' | 'meo' | 'reputation';
   position: 'article_bottom' | 'sidebar';
   articleSlug?: string;
 }) => {
@@ -67,7 +67,7 @@ export const trackCTAClick = ({
   destinationUrl,
   articleSlug,
 }: {
-  ctaType: 'soft' | 'hard' | 'mixed' | 'factoring' | 'accounting';
+  ctaType: 'soft' | 'hard' | 'mixed' | 'factoring' | 'accounting' | 'meo' | 'reputation';
   position: 'article_bottom' | 'sidebar';
   serviceName: string;
   destinationUrl: string;
