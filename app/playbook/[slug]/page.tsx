@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { getArticleBySlug, getArticleSlugs, getRelatedArticles } from '@/lib/markdown';
 import { ArticleSchema } from '@/components/article-schema';
 import { BreadcrumbSchema } from '@/components/breadcrumb-schema';
-import { CTAMixed } from '@/components/cta-mixed';
+import { CTAMeoTool } from '@/components/cta-meo-tool';
+import { CTAReputation } from '@/components/cta-reputation';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SidebarCTA } from '@/components/sidebar-cta';
 import { ArticleViewTracker } from '@/components/analytics/ArticleViewTracker';
@@ -154,8 +155,26 @@ export default async function PlaybookPage({ params }: PageProps) {
               </div>
 
               {/* CTA表示 */}
-              <div className="animate-fadeInUp">
-                <CTAMixed />
+              <div className="space-y-6 animate-fadeInUp">
+                <h3 className="text-2xl font-bold text-center mb-8" style={{ color: 'var(--gray-900)' }}>
+                  いまのあなたはどちら？
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--gray-900)' }}>
+                      <span className="text-2xl">💡</span>
+                      軽度の口コミ対応
+                    </h4>
+                    <CTAMeoTool />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--gray-900)' }}>
+                      <span className="text-2xl">⚖️</span>
+                      悪質な口コミ対応
+                    </h4>
+                    <CTAReputation />
+                  </div>
+                </div>
               </div>
             </article>
 
