@@ -17,7 +17,7 @@ export function ArticleSchema({
   url,
   imageUrl,
 }: ArticleSchemaProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mibarai-guide.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
   const defaultImage = `${siteUrl}/og-default.png`;
 
   const schema = {
@@ -43,7 +43,7 @@ export function ArticleSchema({
     dateModified: dateModified || datePublished,
     publisher: {
       '@type': 'Organization',
-      name: '未入金・支払い催促実務ガイド',
+      name: '口コミ対応マニュアル',
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',

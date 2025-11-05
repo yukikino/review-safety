@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mibarai-guide.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
 export const metadata: Metadata = {
   title: 'プライバシーポリシー',
-  description: '未入金・支払い催促実務ガイドのプライバシーポリシー（個人情報保護方針）について掲載しています。',
+  description: '低評価口コミ・クレーム対応マニュアルのプライバシーポリシー（個人情報保護方針）について掲載しています。',
   alternates: {
     canonical: `${siteUrl}/privacy`,
   },
   openGraph: {
-    title: 'プライバシーポリシー | 未入金・支払い催促実務ガイド',
-    description: '未入金・支払い催促実務ガイドのプライバシーポリシー（個人情報保護方針）について掲載しています。',
+    title: 'プライバシーポリシー | 口コミ対応マニュアル',
+    description: '低評価口コミ・クレーム対応マニュアルのプライバシーポリシー（個人情報保護方針）について掲載しています。',
     url: `${siteUrl}/privacy`,
   },
 };
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
         <div className="prose prose-blue max-w-none">
           <section className="mb-8">
             <p className="text-sm mb-8" style={{ color: 'var(--foreground-muted)' }}>
-              未入金・支払い催促実務ガイド（以下「当サイト」）は、ユーザーの個人情報保護の重要性について認識し、
+              低評価口コミ・クレーム対応マニュアル（以下「当サイト」）は、ユーザーの個人情報保護の重要性について認識し、
               個人情報の保護に関する法律（個人情報保護法）を遵守すると共に、以下のプライバシーポリシー（個人情報保護方針）に従って、
               適切な取扱い及び保護に努めます。
             </p>

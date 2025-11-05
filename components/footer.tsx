@@ -8,10 +8,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="font-bold mb-3 text-sm" style={{ color: 'var(--gray-900)' }}>
-              未入金・支払い催促実務ガイド
+              口コミ対応マニュアル
             </h3>
             <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--foreground-muted)' }}>
-              取引先からの未入金・支払い遅延に悩む事業者の方々に向けて、実務的な対応方法を解説するサイトです。
+              低評価レビューに悩む店舗オーナーの方々に向けて、実務的な対応方法を解説するサイトです。
             </p>
           </div>
 
@@ -54,7 +54,7 @@ export function Footer() {
           </h3>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>
             本サイトは一般的な情報提供を目的としており、法的助言ではありません。
-            個別の状況に応じて、弁護士や司法書士などの専門家にご相談ください。
+            個別の状況に応じて、弁護士などの専門家にご相談ください。
             本サイトの情報を使用した結果生じた損害について、当サイトは一切の責任を負いません。
           </p>
         </div>
@@ -71,7 +71,7 @@ export function Footer() {
         {/* コピーライト */}
         <div className="pt-6 border-t" style={{ borderColor: 'var(--gray-200)' }}>
           <p className="text-sm text-center" style={{ color: 'var(--foreground-muted)' }}>
-            © 2025 未入金・支払い催促実務ガイド. All rights reserved.
+            © 2025 口コミ対応マニュアル. All rights reserved.
           </p>
         </div>
       </div>
