@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /_next/static/
 
 # Host
 Host: https://review-safety.com
