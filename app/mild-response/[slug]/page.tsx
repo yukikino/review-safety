@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getArticleBySlug, getArticleSlugs, getRelatedArticles } from '@/lib/markdown';
 import { ArticleSchema } from '@/components/article-schema';
 import { BreadcrumbSchema } from '@/components/breadcrumb-schema';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { CTAMeoTool } from '@/components/cta-meo-tool';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SidebarCTA } from '@/components/sidebar-cta';
@@ -117,6 +118,13 @@ export default async function MildResponsePage({ params }: PageProps) {
 
       <div className="min-h-screen" style={{ background: 'var(--background-secondary)' }}>
         <div className="container mx-auto px-4 py-8 max-w-7xl">
+          <Breadcrumb
+            items={[
+              { name: 'ホーム', url: '/' },
+              { name: '通常対応', url: '/mild-response' },
+              { name: frontmatter.title, url: `/mild-response/${slug}` },
+            ]}
+          />
           <div className="grid lg:grid-cols-[1fr_280px] gap-8">
             {/* メインコンテンツ */}
             <article>

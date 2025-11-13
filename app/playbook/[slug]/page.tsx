@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getArticleBySlug, getArticleSlugs, getRelatedArticles } from '@/lib/markdown';
 import { ArticleSchema } from '@/components/article-schema';
 import { BreadcrumbSchema } from '@/components/breadcrumb-schema';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { CTAMeoTool } from '@/components/cta-meo-tool';
 import { CTAReputation } from '@/components/cta-reputation';
 import { ScrollToTop } from '@/components/scroll-to-top';
@@ -118,6 +119,13 @@ export default async function PlaybookPage({ params }: PageProps) {
 
       <div className="min-h-screen" style={{ background: 'var(--background-secondary)' }}>
         <div className="container mx-auto px-4 py-8 max-w-7xl">
+          <Breadcrumb
+            items={[
+              { name: 'ホーム', url: '/' },
+              { name: '全体フロー', url: '/playbook' },
+              { name: frontmatter.title, url: `/playbook/${slug}` },
+            ]}
+          />
           <div className="grid lg:grid-cols-[1fr_280px] gap-8">
             {/* メインコンテンツ */}
             <article>

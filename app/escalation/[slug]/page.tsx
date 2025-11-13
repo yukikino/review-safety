@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getArticleBySlug, getArticleSlugs, getRelatedArticles } from '@/lib/markdown';
 import { ArticleSchema } from '@/components/article-schema';
 import { BreadcrumbSchema } from '@/components/breadcrumb-schema';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { CTAReputation } from '@/components/cta-reputation';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SidebarCTA } from '@/components/sidebar-cta';
@@ -115,6 +116,13 @@ export default async function EscalationPage({ params }: PageProps) {
 
       <div className="min-h-screen" style={{ background: 'var(--background-secondary)' }}>
         <div className="container mx-auto px-4 py-8 max-w-7xl">
+          <Breadcrumb
+            items={[
+              { name: 'ホーム', url: '/' },
+              { name: '強め案件対応', url: '/escalation' },
+              { name: frontmatter.title, url: `/escalation/${slug}` },
+            ]}
+          />
           <div className="grid lg:grid-cols-[1fr_280px] gap-8">
             <article>
               <header className="mb-8 card p-8 animate-fadeInUp">
