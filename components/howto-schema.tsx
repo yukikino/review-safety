@@ -33,7 +33,13 @@ export function HowToSchema({
     name: name,
     description: description,
     ...(totalTime && { totalTime }),
-    ...(estimatedCost && { estimatedCost }),
+    ...(estimatedCost && {
+      estimatedCost: {
+        '@type': 'MonetaryAmount',
+        currency: estimatedCost.currency,
+        value: estimatedCost.value,
+      },
+    }),
     step: steps.map((step, index) => ({
       '@type': 'HowToStep',
       position: index + 1,
