@@ -1,6 +1,6 @@
 ---
 title: "クレーム・口コミ対応完全ガイド｜★1レビューが来たら最初にやるべきこと"
-description: "低評価口コミやクレームが来た時の対応フローを完全網羅。公開返信のタイミング、記録の取り方、削除依頼の判断基準、自動化の方法まで実務で使えるプレイブックを提供します。"
+description: "低評価口コミの対応フローを完全網羅。返信のタイミング、記録の取り方、削除依頼の判断基準を実務で使える形で解説します。"
 date: "2025-01-13"
 author: "編集部"
 category: "playbook"
@@ -8,7 +8,7 @@ tags: ["口コミ対応", "クレーム対応", "対応フロー", "店舗運営
 cta: "mixed"
 ---
 
-# クレーム・口コミ対応完全ガイド
+# 低評価口コミ対応フロー完全版
 
 ## この記事は誰のため?
 
@@ -91,9 +91,9 @@ cta: "mixed"
 - 再来店を促す表現を入れる
 
 **参考記事:**
-- [「待たされた」口コミへの返信テンプレ](/mild-response/waiting-complaint)
-- [「接客が冷たい」口コミへの返信テンプレ](/mild-response/staff-attitude)
-- [「高い割に効果がない」口コミへの返信テンプレ](/mild-response/high-price-complaint)
+- [待ち時間クレームへの対応方法](/mild-response/waiting-complaint)
+- [スタッフの接客態度クレームへの対応](/mild-response/staff-attitude)
+- [価格クレームへの対応方法](/mild-response/high-price-complaint)
 
 ### フェーズ2: 強めクレーム（escalation）
 
@@ -108,7 +108,7 @@ cta: "mixed"
 - 内部記録（予約システムのログ、防犯カメラ等）を確認
 
 **参考記事:**
-- [事実と違う口コミへの対応](/escalation/false-claims)
+- [事実無根の口コミ対応マニュアル](/escalation/false-claims)
 
 ### フェーズ3: 悪質な誹謗中傷
 
@@ -123,7 +123,7 @@ cta: "mixed"
 - 弁護士への相談を検討
 
 **参考記事:**
-- [名誉毀損レベルの口コミへの対応](/escalation/defamation-handling)
+- [名誉毀損への法的対応マニュアル](/escalation/defamation-handling)
 
 ---
 
@@ -250,6 +250,8 @@ cta: "mixed"
 ## スタッフへのヒアリングと記録の取り方
 
 口コミ対応で最も重要なのは、**正確な記録を残すこと**です。
+
+クレーム対応の記録管理については、[経済産業省のクレーム対応指針](https://www.meti.go.jp/)や[中小企業庁の事業者向けガイド](https://www.chusho.meti.go.jp/)も参考にしてください。
 
 ### ヒアリング時の注意点
 
@@ -398,11 +400,11 @@ cta: "mixed"
 ## 次のステップ
 
 ✅ **具体的な返信テンプレートを知りたい方は**
-→ [「待たされた」口コミへの返信テンプレ](/mild-response/waiting-complaint)
+→ [待ち時間クレームへの対応方法](/mild-response/waiting-complaint)
 
 ⚠️ **業種別の注意点を知りたい方は**
-→ [美容クリニック向け口コミ対応](/industry-specific/beauty-clinic)
-→ [飲食店向け口コミ対応](/industry-specific/restaurant)
+→ [美容クリニックの薬機法対応返信](/industry-specific/beauty-clinic)
+→ [飲食店の食中毒・衛生クレーム対応](/industry-specific/restaurant)
 
 📊 **自動化・外部化を検討したい方は**
 → 下記のCTAをご確認ください

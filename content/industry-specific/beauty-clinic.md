@@ -1,6 +1,6 @@
 ---
 title: "美容クリニック向け口コミ対応｜薬機法に違反しない返信文の書き方"
-description: "美容クリニックの口コミ対応で絶対に避けるべき薬機法違反表現と、安全な返信テンプレートを解説。効果の断定、ビフォーアフター、比較広告のNG例も紹介します。"
+description: "美容クリニックの口コミ対応で薬機法違反を避ける方法を解説。安全な返信テンプレートとNG表現を実例付きで紹介します。"
 date: "2025-01-13"
 author: "編集部"
 category: "industry-specific"
@@ -8,7 +8,7 @@ tags: ["美容クリニック", "薬機法", "医療広告", "口コミ対応", 
 cta: "meo"
 ---
 
-# 美容クリニック向け口コミ対応マニュアル
+# 美容クリニックの薬機法対応口コミ返信
 
 ## この記事は誰のため?
 
@@ -33,6 +33,8 @@ cta: "meo"
 3. **比較優良広告**: 「他院より安い」「業界No.1」
 4. **著名人の推薦**: 「芸能人も通っています」
 5. **体験談の誇張**: 「全員が満足しています」
+
+医療広告については、[厚生労働省の医療広告ガイドライン](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryou/kokokukisei/index.html)を必ずご確認ください。また、[日本医師会](https://www.med.or.jp/)や[日本美容外科学会](https://www.jsaps.com/)でも相談を受け付けています。
 
 ### 口コミ返信でやってはいけないこと
 
@@ -246,10 +248,10 @@ cta: "meo"
 ## 次のステップ
 
 ✅ **飲食店の口コミ対応を知りたい方は**
-→ [飲食店向け口コミ対応マニュアル](/industry-specific/restaurant)
+→ [飲食店向け口コミ対応方法](/industry-specific/restaurant)
 
 ⚠️ **悪質な誹謗中傷に困っている方は**
-→ [名誉毀損レベルの口コミへの法的対応と削除依頼](/escalation/defamation-handling)
+→ [名誉毀損への法的対応マニュアル](/escalation/defamation-handling)
 
 📊 **全体のフローを確認したい方は**
-→ [クレーム・口コミ対応完全ガイド](/playbook/complete-workflow)
+→ [口コミ対応完全ガイド](/playbook/complete-workflow)

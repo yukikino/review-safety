@@ -1,6 +1,6 @@
 ---
 title: "飲食店向け口コミ対応｜食中毒・衛生面のクレームへの正しい返信方法"
-description: "飲食店の口コミ対応で特に注意すべき食中毒・衛生面への言及、食品表示、アレルギー対応のクレームへの返信テンプレートを解説します。"
+description: "飲食店の食中毒・衛生面クレームへの対応法を解説。保健所への報告基準と安全な返信テンプレートを実例付きで紹介します。"
 date: "2025-01-13"
 author: "編集部"
 category: "industry-specific"
@@ -8,7 +8,7 @@ tags: ["飲食店", "食中毒", "衛生管理", "口コミ対応", "食品表�
 cta: "meo"
 ---
 
-# 飲食店向け口コミ対応マニュアル
+# 飲食店の食中毒・衛生クレーム対応
 
 ## この記事は誰のため?
 
@@ -38,6 +38,8 @@ cta: "meo"
 2. **内部調査**: いつ、何を提供したか、他のお客様に症状が出ていないか確認
 3. **公開返信**: 事実確認中であることを伝え、誠実な対応を約束
 4. **結果の共有**: 調査結果が出たら、必要に応じて追加の返信
+
+食品衛生管理については、[厚生労働省の食品衛生法ガイド](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/shokuhin/index.html)を必ずご確認ください。また、お近くの[保健所](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/hokenjo/)にもご相談いただけます。
 
 ---
 
@@ -232,10 +234,10 @@ cta: "meo"
 ## 次のステップ
 
 ✅ **一般的な口コミ対応を知りたい方は**
-→ [「待たされた」口コミへの返信テンプレート](/mild-response/waiting-complaint)
+→ [待ち時間クレームへの対応方法](/mild-response/waiting-complaint)
 
 ⚠️ **事実と違う口コミに困っている方は**
-→ [事実と違う口コミへの対応マニュアル](/escalation/false-claims)
+→ [事実無根の口コミ対応マニュアル](/escalation/false-claims)
 
 📊 **全体のフローを確認したい方は**
-→ [クレーム・口コミ対応完全ガイド](/playbook/complete-workflow)
+→ [口コミ対応完全ガイド](/playbook/complete-workflow)
