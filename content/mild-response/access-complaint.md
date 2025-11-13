@@ -309,7 +309,7 @@ Googleビジネスプロフィールの正確な情報管理については、[G
 → [設備クレームへの対応方法](/mild-response/facility-complaint)
 
 ⚠️ **Googleビジネスプロフィールの最適化を知りたい方は**
-→ [MEO対策完全ガイド](/playbook/meo-optimization)
+→ [口コミを増やす方法](/playbook/review-generation)
 
 📊 **全体のフローを確認したい方は**
 → [口コミ対応完全ガイド](/playbook/complete-workflow)

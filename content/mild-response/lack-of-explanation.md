@@ -332,7 +332,7 @@ A: 週2回を推奨していますが、週1回でも可能です。ただし、
 → [価格クレームへの対応方法](/mild-response/high-price-complaint)
 
 ⚠️ **契約トラブルに困っている方は**
-→ [契約トラブル対応マニュアル](/escalation/contract-dispute)
+→ [事実無根の口コミ対応マニュアル](/escalation/false-claims)
 
 📊 **全体のフローを確認したい方は**
 → [口コミ対応完全ガイド](/playbook/complete-workflow)

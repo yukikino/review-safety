@@ -263,7 +263,7 @@ Googleマップやホットペッパーなどのポータルサイトにその�
 → [価格クレームへの対応方法](/mild-response/high-price-complaint)
 
 ⚠️ **予約システムの改善を検討している方は**
-→ [予約管理システムの選び方](/playbook/booking-system-guide)
+→ [口コミ対応完全ガイド](/playbook/complete-workflow)
 
 📊 **全体のフローを確認したい方は**
 → [口コミ対応完全ガイド](/playbook/complete-workflow)
