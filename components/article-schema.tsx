@@ -47,15 +47,9 @@ export function ArticleSchema({
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        // TODO: Replace with square logo image (512x512) for better SEO compliance
-        // Current image is 1200x630, but schema.org recommends square logos
-        // Create /public/logo-square.png and update this to:
-        // url: `${siteUrl}/logo-square.png`,
-        // width: 512,
-        // height: 512,
-        url: `${siteUrl}/og-default.png`,
-        width: 1200,
-        height: 630,
+        url: `${siteUrl}/logo-square.svg`,
+        width: 512,
+        height: 512,
       },
     },
   };
