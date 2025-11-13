@@ -53,12 +53,12 @@
 
 ### データ管理
 
-| 技術                   | 役割           | 実装詳細                                 |
-| ---------------------- | -------------- | ---------------------------------------- |
-| **Google Sheets**      | データソース   | 比較表（価格・返金・日本対応etc.）を管理 |
-| **Google Apps Script** | 自動化トリガー | onEdit → Webhook → GitHub Actions起動    |
-| **GitHub Actions**     | CI/CD          | シート取得 → JSON変換 → commit → deploy  |
-| **Zod**                | スキーマ検証   | シートデータの型チェック（ビルド時）     |
+| 技術               | 役割         | 実装詳細                                            |
+| ------------------ | ------------ | --------------------------------------------------- |
+| **JSON**           | データソース | 比較表（価格・返金・日本対応etc.）をdata/に管理     |
+| **GitHub PR**      | 更新フロー   | データ編集 → PR作成 → レビュー → マージ → デプロイ |
+| **GitHub Actions** | CI/CD        | データ検証 → ビルド → デプロイ                      |
+| **Zod**            | スキーマ検証 | JSONデータの型チェック（ビルド時）                  |
 
 ### コンテンツ管理
 
@@ -95,144 +95,85 @@
 
 ```mermaid
 graph LR
-    A[Google Sheets] -->|Apps Script webhook| B[GitHub Actions]
-    B -->|fetch & convert| C[data/products.json]
-    C -->|git commit| D[GitHub main branch]
-    D -->|auto trigger| E[Vercel Deploy]
+    A[data/products.json] -->|直接編集| B[GitHub PR]
+    B -->|レビュー & マージ| C[GitHub main branch]
+    C -->|auto trigger| D[Vercel Deploy]
 
-    F[Markdown記事] -->|PR| G[SEO Lint CI]
-    G -->|✓ pass| D
+    E[Markdown記事] -->|PR| F[SEO Lint CI]
+    F -->|✓ pass| C
 
-    E -->|build| H[Next.js SSG]
-    H -->|generate| I[静的HTML + JSON-LD]
-    I -->|deploy| J[Production Site]
+    D -->|build| G[Next.js SSG]
+    G -->|generate| H[静的HTML + JSON-LD]
+    H -->|deploy| I[Production Site]
 
-    K[記事テンプレート] -.->|copy & edit| F
+    J[記事テンプレート] -.->|copy & edit| E
 ```
 
 ### データ更新フロー（詳細）
 
-#### 1. Googleシート編集
+#### 1. JSONファイルの直接編集
 
-**シート構成**（`products` シート）
+**ファイル構成**（`data/products.json`）
 
-| 列名            | 型      | 必須 | 説明                 | 例              |
+データは配列形式のJSONで管理され、各商品オブジェクトは以下のフィールドを持ちます：
+
+| フィールド名    | 型      | 必須 | 説明                 | 例              |
 | --------------- | ------- | ---- | -------------------- | --------------- |
 | `id`            | string  | ✓    | 一意ID               | `surfshark-vpn` |
 | `name`          | string  | ✓    | 商品名               | `Surfshark VPN` |
 | `price_monthly` | number  | ✓    | 月額価格（USD）      | `12.95`         |
 | `price_annual`  | number  | ✓    | 年額価格（USD）      | `47.88`         |
 | `refund_days`   | number  | ✓    | 返金保証日数         | `30`            |
-| `japan_ui`      | boolean | ✓    | 日本語UI             | `TRUE`          |
-| `japan_payment` | boolean | ✓    | 日本の決済対応       | `TRUE`          |
-| `japan_support` | boolean | ✓    | 日本語サポート       | `FALSE`         |
-| `japan_docs`    | boolean | ✓    | 日本語ドキュメント   | `TRUE`          |
+| `japan_ui`      | boolean | ✓    | 日本語UI             | `true`          |
+| `japan_payment` | boolean | ✓    | 日本の決済対応       | `true`          |
+| `japan_support` | boolean | ✓    | 日本語サポート       | `false`         |
+| `japan_docs`    | boolean | ✓    | 日本語ドキュメント   | `true`          |
 | `affiliate_url` | string  | ✓    | アフィリエイトリンク | `https://...`   |
-| `last_updated`  | date    | ✓    | 最終確認日           | `2025-10-27`    |
+| `last_updated`  | string  | ✓    | 最終確認日           | `2025-10-27`    |
 | `source_url`    | string  | ✓    | 出典URL（公式）      | `https://...`   |
 
-**スコアリング計算**（自動列）
+**スコアリング計算**（ビルド時に自動計算）
 
-```
-= japan_score (0-4点)
-= COUNTIF(japan_ui, japan_payment, japan_support, japan_docs, TRUE)
-```
-
-#### 2. 自動同期（Apps Script → GitHub Actions）
-
-**Apps Script** (`onEdit` トリガー + デバウンス)
-
-```javascript
-// グローバル変数で最終更新時刻を管理
-const DEBOUNCE_MS = 60000; // 1分間のデバウンス
-
-function onEdit(e) {
-  const sheet = e.source.getActiveSheet();
-  if (sheet.getName() !== 'products') return;
-
-  // LockServiceで連続編集を制御
-  const lock = LockService.getScriptLock();
-  if (!lock.tryLock(1000)) {
-    Logger.log('別の更新処理が実行中のためスキップ');
-    return;
-  }
-
-  try {
-    const scriptProps = PropertiesService.getScriptProperties();
-    const lastTrigger = scriptProps.getProperty('LAST_TRIGGER_TIME');
-    const now = Date.now();
-
-    // デバウンス: 前回から1分以内なら発火しない
-    if (lastTrigger && now - parseInt(lastTrigger) < DEBOUNCE_MS) {
-      Logger.log('デバウンス期間中のためスキップ');
-      return;
-    }
-
-    // GitHub repository_dispatch を呼び出し
-    const url = 'https://api.github.com/repos/{owner}/{repo}/dispatches';
-    const payload = {
-      event_type: 'sheet_updated',
-      client_payload: {
-        timestamp: new Date().toISOString(),
-        editor: Session.getActiveUser().getEmail(),
-      },
-    };
-
-    const response = UrlFetchApp.fetch(url, {
-      method: 'post',
-      headers: {
-        Authorization: 'Bearer ' + scriptProps.getProperty('GITHUB_TOKEN'),
-        Accept: 'application/vnd.github+json',
-        'User-Agent': 'Google-Apps-Script',
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-      contentType: 'application/json',
-      payload: JSON.stringify(payload),
-      muteHttpExceptions: true,
-    });
-
-    if (response.getResponseCode() === 204) {
-      scriptProps.setProperty('LAST_TRIGGER_TIME', now.toString());
-      Logger.log('GitHub Actions トリガー成功');
-    } else {
-      Logger.log('エラー: ' + response.getContentText());
-    }
-  } finally {
-    lock.releaseLock();
-  }
+```typescript
+function calculateJapanScore(product: Product): number {
+  return [
+    product.japan_ui,
+    product.japan_payment,
+    product.japan_support,
+    product.japan_docs,
+  ].filter(Boolean).length;
 }
 ```
 
-**セキュリティ注意**:
+#### 2. GitHub PRによる更新フロー
 
-- `GITHUB_TOKEN` は Fine-grained PAT で `contents: write` + `metadata: read` のみ付与
-- Apps Script の編集権限は管理者のみに制限（閲覧者には不可視）
-- トークンは PropertiesService（暗号化ストレージ）に保存
+**更新手順**:
 
-**GitHub Actions** (`.github/workflows/sync-sheet.yml`)
+1. **ブランチ作成**: `git checkout -b update-products-data`
+2. **JSONファイル編集**: `data/products.json` を直接編集
+3. **バリデーション**: `npm run validate-data` でZodスキーマチェック
+4. **PR作成**: GitHub上でPull Requestを作成
+5. **CI実行**: GitHub Actionsがバリデーションとビルドをチェック
+6. **レビュー**: チーム内でデータの正確性を確認
+7. **マージ**: main ブランチにマージ → Vercel自動デプロイ
+
+**GitHub Actions** (`.github/workflows/validate.yml`)
 
 ```yaml
-name: Sync Google Sheets
+name: Validate Product Data
 on:
-  repository_dispatch:
-    types: [sheet_updated]
-  schedule:
-    - cron: '0 */6 * * *' # フォールバック：6時間ごと
-
-# 同時実行を防ぐ（前回のジョブが完了するまで待機）
-concurrency:
-  group: sync-sheet
-  cancel-in-progress: false
+  pull_request:
+    paths:
+      - 'data/products.json'
+  push:
+    branches:
+      - main
 
 jobs:
-  sync:
+  validate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # git push に必要
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - uses: actions/setup-node@v4
         with:
@@ -241,37 +182,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch Google Sheets
-        run: node scripts/fetch-sheet.js
-        env:
-          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
-          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
-
       - name: Validate Data
         run: node scripts/validate-data.js
 
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config pull.ff only
-          git add data/products.json
-          if ! git diff --staged --quiet; then
-            git commit -m "chore: update products data [skip ci]
-
-            Updated by: ${{ github.event.client_payload.editor || 'scheduled job' }}
-            Timestamp: ${{ github.event.client_payload.timestamp || github.event.repository.updated_at }}"
-            git pull --rebase
-            git push
-          else
-            echo "No changes detected"
-          fi
+      - name: Build Test
+        run: npm run build
 ```
 
-**データ変換スクリプト** (`scripts/fetch-sheet.js`)
+**データバリデーションスクリプト** (`scripts/validate-data.js`)
 
 ```javascript
-import { google } from 'googleapis';
 import { z } from 'zod';
 import fs from 'fs';
 
@@ -291,73 +211,10 @@ const ProductSchema = z.object({
   source_url: z.string().url(),
 });
 
-// サービスアカウント認証（非公開シート対応）
-const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
-  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-});
-
-const sheets = google.sheets({ version: 'v4', auth });
-
 try {
-  // シートデータ取得
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.GOOGLE_SHEETS_ID,
-    range: 'products!A2:M', // ヘッダー行を除く
-    valueRenderOption: 'UNFORMATTED_VALUE', // 型情報を保持
-  });
-
-  if (!response.data.values || response.data.values.length === 0) {
-    console.warn('警告: シートにデータがありません');
-    process.exit(0);
-  }
-
-  // 行をオブジェクトに変換
-  const products = response.data.values.map((row, index) => {
-    try {
-      return {
-        id: row[0]?.toString().trim() || '',
-        name: row[1]?.toString().trim() || '',
-        price_monthly: parseFloat(row[2]) || 0,
-        price_annual: parseFloat(row[3]) || 0,
-        refund_days: parseInt(row[4]) || 0,
-        japan_ui: row[5] === true || row[5] === 'TRUE',
-        japan_payment: row[6] === true || row[6] === 'TRUE',
-        japan_support: row[7] === true || row[7] === 'TRUE',
-        japan_docs: row[8] === true || row[8] === 'TRUE',
-        affiliate_url: row[9]?.toString().trim() || '',
-        last_updated: row[10]?.toString().trim() || '',
-        source_url: row[11]?.toString().trim() || '',
-      };
-    } catch (err) {
-      console.error(`行 ${index + 2} の解析エラー:`, err.message);
-      throw err;
-    }
-  });
-
-  // Zodでバリデーション
-  const validated = z.array(ProductSchema).parse(products);
-
-  // 日本対応スコアでソート（高い順）
-  validated.sort((a, b) => {
-    const scoreA = [
-      a.japan_ui,
-      a.japan_payment,
-      a.japan_support,
-      a.japan_docs,
-    ].filter(Boolean).length;
-    const scoreB = [
-      b.japan_ui,
-      b.japan_payment,
-      b.japan_support,
-      b.japan_docs,
-    ].filter(Boolean).length;
-    return scoreB - scoreA;
-  });
-
-  // JSON出力
-  fs.writeFileSync('data/products.json', JSON.stringify(validated, null, 2));
-  console.log(`✓ ${validated.length}件の商品データを取得しました`);
+  const products = JSON.parse(fs.readFileSync('data/products.json', 'utf-8'));
+  z.array(ProductSchema).parse(products);
+  console.log(`✓ ${products.length}件の商品データを取得しました`);
 } catch (error) {
   console.error('エラー:', error.message);
   if (error.errors) {
@@ -372,10 +229,11 @@ try {
 
 **重要な変更点**:
 
-- ✅ サービスアカウント認証（非公開シート対応）
+- ✅ JSONファイルをGitHub上で直接管理
+- ✅ PRベースのレビューフローで品質担保
 - ✅ 詳細なZodスキーマ（型と形式をチェック）
 - ✅ エラーハンドリング（行番号付き）
-- ✅ 自動ソート（日本対応スコア順）
+- ✅ CI/CDによる自動検証
 
 #### 3. ビルド時の利用
 
@@ -572,24 +430,45 @@ export default function ArticlePage({ params }) {
 
 ## 運用フロー
 
-### A. 比較表更新（最速パス）
+### A. 比較表更新（PRベースフロー）
 
-**所要時間**: 5分
+**所要時間**: 10-15分
 
-1. Googleシートを開く
-2. 価格・返金日数などを編集
-3. 自動保存 → Apps Script が webhook 発火（裏で動作）
-4. 5分後、Vercel Dashboard でデプロイ完了を確認
-5. プレビューURLで変更箇所を確認（チェックリスト参照）
-6. Production に promote
+1. ブランチを作成
+   ```bash
+   git checkout -b update-product-data
+   ```
 
-**チェックリスト** (PRコメントに自動表示)
+2. `data/products.json` を直接編集
+   - 価格・返金日数などを更新
+   - `last_updated` フィールドを今日の日付に変更
+
+3. ローカルでバリデーション実行
+   ```bash
+   npm run validate-data
+   ```
+
+4. コミット & プッシュ
+   ```bash
+   git add data/products.json
+   git commit -m "chore: update product data"
+   git push origin update-product-data
+   ```
+
+5. GitHub上でPR作成
+   - CI が自動でバリデーションとビルドを実行
+   - チェックリスト（下記）を確認
+
+6. レビュー後にマージ → Vercel 自動デプロイ
+
+**チェックリスト** (PRテンプレートに表示)
 
 - [ ] 価格表示が正しいか
 - [ ] 返金日数が正しいか
-- [ ] 日本対応スコアが更新されているか
-- [ ] アフィリエイトリンクが機能するか
-- [ ] 最終確認日が今日の日付か
+- [ ] 日本対応フラグが正確か
+- [ ] アフィリエイトリンクが正しいか
+- [ ] `last_updated` が今日の日付か
+- [ ] JSONフォーマットが正しいか（バリデーション通過）
 
 ### B. 記事追加（テンプレ利用）
 
@@ -728,7 +607,7 @@ export default function ArticlePage({ params }) {
 import { z } from 'zod';
 import fs from 'fs';
 
-// fetch-sheet.jsと同じスキーマを使用（DRY原則）
+// 共通のProductスキーマ定義
 const ProductSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1),
@@ -757,8 +636,7 @@ try {
 }
 ```
 
-**重要**: このスキーマは `scripts/fetch-sheet.js` と完全に一致させること。
-将来的には `lib/schema.ts` に共通スキーマを定義し、両方のスクリプトでインポートすることを推奨。
+**推奨**: 将来的には `lib/schema.ts` に共通スキーマを定義し、複数のスクリプトでインポートすることを推奨。
 
 #### B. 価格変動アラート
 
@@ -824,11 +702,11 @@ const japanFriendly = products.filter((p) => calculateJapanScore(p) >= 3);
 
 ### Critical修正（初期レビュー対応）
 
-| #   | 指摘                     | 対応内容                                      | ドキュメント参照              |
-| --- | ------------------------ | --------------------------------------------- | ----------------------------- |
-| 1   | Googleシート自動化が曖昧 | Apps Script + GitHub Actions の具体実装を明記 | [データフロー](#データフロー) |
-| 2   | 法的リスク対策が不足     | 免責文言、最終確認日、公式リンク誘導を標準化  | [リスク管理](#リスク管理)     |
-| 3   | SEOリントの定義が不明確  | 14項目の具体的チェック内容を列挙              | [SEO戦略](#seo戦略)           |
+| #   | 指摘                     | 対応内容                                                  | ドキュメント参照              |
+| --- | ------------------------ | --------------------------------------------------------- | ----------------------------- |
+| 1   | データ管理フローが曖昧   | GitHub PRベースのワークフローとバリデーション実装を明記   | [データフロー](#データフロー) |
+| 2   | 法的リスク対策が不足     | 免責文言、最終確認日、公式リンク誘導を標準化              | [リスク管理](#リスク管理)     |
+| 3   | SEOリントの定義が不明確  | 14項目の具体的チェック内容を列挙                          | [SEO戦略](#seo戦略)           |
 
 ### Important修正
 
@@ -838,7 +716,7 @@ const japanFriendly = products.filter((p) => calculateJapanScore(p) >= 3);
 | 5   | コンテンツ履歴管理が弱い   | PRテンプレート + 月次レポート自動生成  | [運用フロー](#運用フロー) |
 | 6   | 日本対応フラグの基準が曖昧 | 4項目の明確な判定基準とスコアリング    | [リスク管理](#リスク管理) |
 
-### Nice to Have（Stage 5以降）
+### Nice to Have（Stage 4以降）
 
 - Lighthouse CI スコアのPR表示
 - VSCode snippets for article templates
@@ -857,6 +735,6 @@ const japanFriendly = products.filter((p) => calculateJapanScore(p) >= 3);
 ## 参考資料
 
 - [Next.js App Router Docs](https://nextjs.org/docs/app)
-- [Google Sheets API](https://developers.google.com/sheets/api/guides/concepts)
+- [Zod Schema Validation](https://zod.dev/)
 - [Schema.org FAQ](https://schema.org/FAQPage)
 - [Core Web Vitals](https://web.dev/vitals/)

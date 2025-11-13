@@ -20,11 +20,10 @@
 | --------------------------------------------------------------------- | -------------- | ------ | ------ | ------ |
 | [Stage 1: Next.js基盤構築](stage1-nextjs-foundation.md)               | ⬜ Not Started | -      | -      | 0%     |
 | [Stage 2: データ駆動比較表](stage2-data-driven-table.md)              | ⬜ Not Started | -      | -      | 0%     |
-| [Stage 3: Googleシート自動同期](stage3-google-sheets-sync.md)         | ⬜ Not Started | -      | -      | 0%     |
-| [Stage 4: SEOリント + 記事システム](stage4-seo-lint-articles.md)      | ⬜ Not Started | -      | -      | 0%     |
-| [Stage 5: 運用ツール + モニタリング](stage5-operations-monitoring.md) | ⬜ Not Started | -      | -      | 0%     |
+| [Stage 3: SEOリント + 記事システム](stage4-seo-lint-articles.md)      | ⬜ Not Started | -      | -      | 0%     |
+| [Stage 4: 運用ツール + モニタリング](stage5-operations-monitoring.md) | ⬜ Not Started | -      | -      | 0%     |
 
-**全体進捗**: 0% (0/5 完了)
+**全体進捗**: 0% (0/4 完了)
 
 ---
 
@@ -95,25 +94,19 @@ git push
 - **サブタスク**: 25個以上
 - **推定時間**: 4-5時間
 
-### Stage 3: Googleシート自動同期
-
-- **主要タスク**: 8個
-- **サブタスク**: 40個以上
-- **推定時間**: 6-8時間
-
-### Stage 4: SEOリント + 記事システム
+### Stage 3: SEOリント + 記事システム
 
 - **主要タスク**: 8個
 - **サブタスク**: 30個以上
 - **推定時間**: 5-7時間
 
-### Stage 5: 運用ツール + モニタリング
+### Stage 4: 運用ツール + モニタリング
 
 - **主要タスク**: 6個
 - **サブタスク**: 20個以上
 - **推定時間**: 4-6時間
 
-**合計推定時間**: 23-32時間（約3-4日間）
+**合計推定時間**: 17-24時間（約2-3日間）
 
 ---
 

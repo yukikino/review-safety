@@ -1,6 +1,6 @@
 # Stage 2: データ駆動比較表
 
-**Goal**: Googleシートから自動取得した商品データを表示
+**Goal**: JSONファイルから商品データを読み込み表示
 **Status**: ✅ Completed
 **Started**: 2025-10-29
 **Completed**: 2025-10-29

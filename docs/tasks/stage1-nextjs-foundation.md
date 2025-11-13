@@ -53,7 +53,6 @@ ls -la  # package.json, tsconfig.json, tailwind.config.ts が存在
 
   ```bash
   npm install zod gray-matter next-mdx-remote
-  npm install googleapis
   npm install remark remark-html rehype rehype-stringify
   npm install next-sitemap next-seo
   ```
@@ -67,7 +66,7 @@ ls -la  # package.json, tsconfig.json, tailwind.config.ts が存在
 **完了確認**:
 
 ```bash
-cat package.json | grep -E "zod|googleapis"
+cat package.json | grep -E "zod|gray-matter"
 ```
 
 ---
@@ -94,7 +93,7 @@ cat package.json | grep -E "zod|googleapis"
 
 **注意**:
 
-- `fetch-sheet`, `validate-data`, `postbuild` は Stage 3, 4 で追加します
+- `validate-data`, `postbuild` は Stage 2, 3 で追加します
 - Stage 1では基本的なNext.jsスクリプトのみ設定
 
 **完了確認**:
@@ -361,9 +360,8 @@ git remote -v  # origin が表示される
 
 - [x] 環境変数設定（後のStage用に準備）
   ```
-  （Stage 3で設定）
-  GOOGLE_SERVICE_ACCOUNT_KEY
-  GOOGLE_SHEETS_ID
+  （必要に応じて後のStageで設定）
+  # 現時点では環境変数不要（JSONファイルベース）
   ```
 
 **完了確認**:
@@ -418,9 +416,8 @@ git remote -v  # origin が表示される
 
 - [x] Stage 1: Next.js 基盤構築
 - [ ] Stage 2: データ駆動比較表
-- [ ] Stage 3: Googleシート自動同期
-- [ ] Stage 4: SEOリント + 記事システム
-- [ ] Stage 5: 運用ツール + モニタリング
+- [ ] Stage 3: SEOリント + 記事システム
+- [ ] Stage 4: 運用ツール + モニタリング
 
 ````
 

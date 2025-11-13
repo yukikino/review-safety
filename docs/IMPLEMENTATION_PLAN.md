@@ -53,27 +53,27 @@ curl localhost:3000    # ローカル起動確認
    ```bash
    # 本番依存
    npm install zod gray-matter next-mdx-remote
-   npm install googleapis  # Stage 3で使用（サービスアカウント認証）
-   npm install remark remark-html rehype rehype-stringify  # Stage 4で使用
-   npm install next-sitemap next-seo  # Stage 4で使用
+   npm install remark remark-html rehype rehype-stringify  # Stage 3で使用
+   npm install next-sitemap next-seo  # Stage 3で使用
 
    # 開発依存
    npm install -D @types/node prettier eslint-config-prettier
    npm install -D @playwright/test  # Stage 2でE2Eテスト
-   npm install -D markdownlint-cli  # Stage 4でSEOリント
+   npm install -D markdownlint-cli  # Stage 3でSEOリント
    ```
 
 3. package.json の設定
 
    ```json
    {
-     "type": "module", // ES Modules を有効化（Stage 3のスクリプト用）
+     "type": "module", // ES Modules を有効化（スクリプト用）
      "scripts": {
        "dev": "next dev",
        "build": "next build",
        "start": "next start",
        "lint": "next lint",
-       "type-check": "tsc --noEmit"
+       "type-check": "tsc --noEmit",
+       "validate-data": "node scripts/validate-data.js"
      }
    }
    ```
@@ -90,8 +90,8 @@ curl localhost:3000    # ローカル起動確認
      footer.tsx
    lib/
      utils.ts
-   scripts/               # Stage 3で使用
-   data/                  # Stage 2で使用
+   scripts/               # バリデーションスクリプト等
+   data/                  # Stage 2で使用（products.json）
    ```
 
 5. 基本レイアウト実装（ヘッダー・フッター）
@@ -108,7 +108,7 @@ curl localhost:3000    # ローカル起動確認
 
 ## Stage 2: データ駆動比較表
 
-**Goal**: Googleシートから自動取得した商品データを表示
+**Goal**: JSONファイルから商品データを読み込み表示
 
 **Success Criteria**:
 
@@ -200,112 +200,7 @@ npm run build            # SSG成功
 
 ---
 
-## Stage 3: Googleシート自動同期
-
-**Goal**: Googleシート編集が自動でGitHubにコミットされる
-
-**Success Criteria**:
-
-- ✅ Google Apps Script が動作（onEdit トリガー）
-- ✅ GitHub Actions がシートデータを取得
-- ✅ データが変更された場合のみコミット
-- ✅ 6時間ごとのフォールバック同期
-- ✅ Vercel が自動デプロイ
-
-**Tests**:
-
-```bash
-# ローカルテスト
-node scripts/fetch-sheet.js  # シート取得成功
-
-# 手動テスト
-# 1. Googleシートを編集
-# 2. 5分待つ
-# 3. GitHub でコミットを確認
-# 4. Vercel でデプロイを確認
-```
-
-**Tasks**:
-
-1. Google Cloud Platform セットアップ
-   - プロジェクト作成
-   - Sheets API 有効化
-   - **サービスアカウント作成**（重要：非公開シート対応）
-     - IAM > サービスアカウント > 作成
-     - JSON キーをダウンロード
-     - `spreadsheets.readonly` スコープ
-
-2. Googleシート準備
-   - テンプレートシート作成（`products` シート）
-   - 列定義（ARCHITECTURE.md 参照：12列）
-   - **サービスアカウントのメールアドレスに閲覧権限を付与**
-     - 例: `my-service@project-id.iam.gserviceaccount.com`
-     - 「共有」から上記メールに「閲覧者」権限
-
-3. Apps Script 実装
-   - Google Apps Script エディタを開く
-   - ARCHITECTURE.md のコードを貼り付け
-   - トリガー設定：
-     - 「編集時」トリガーを `onEdit` に設定
-     - スクリプトプロパティに `GITHUB_TOKEN` を設定
-       - Fine-grained PAT（`contents: write`）
-
-4. データ取得スクリプト作成
-
-   ```bash
-   # scripts/fetch-sheet.js を作成
-   # ARCHITECTURE.md の完全なコードを使用
-   ```
-
-   - サービスアカウントJSONで認証
-   - Zodスキーマでバリデーション
-   - エラーハンドリング
-
-5. GitHub Actions ワークフロー作成
-
-   ```bash
-   # .github/workflows/sync-sheet.yml を作成
-   # ARCHITECTURE.md の完全なコードを使用
-   ```
-
-   - `permissions: contents: write` を明示
-   - `concurrency` でジョブの重複防止
-   - `git config pull.ff only` でマージポリシー設定
-
-6. GitHub Secrets 設定
-
-   ```
-   GOOGLE_SERVICE_ACCOUNT_KEY: <サービスアカウントのJSON全体>
-   GOOGLE_SHEETS_ID: <シートのID（URLから取得）>
-   ```
-
-   - ⚠️ `GOOGLE_API_KEY` は不要（サービスアカウント認証に切り替え）
-
-7. package.json にスクリプト追加
-
-   ```json
-   {
-     "scripts": {
-       "fetch-sheet": "node scripts/fetch-sheet.js",
-       "validate-data": "node scripts/validate-data.js",
-       "postbuild": "next-sitemap"
-     }
-   }
-   ```
-
-   - `postbuild`はビルド後に自動実行され、サイトマップを生成（Stage 4で追加）
-
-8. 動作確認（段階的テスト）
-   - ローカルテスト: `npm run fetch-sheet`
-   - Apps Script テスト: シート編集 → Apps Script ログ確認
-   - GitHub Actions テスト: 手動トリガー or schedule 待機
-   - E2E テスト: シート編集 → コミット → デプロイ
-
-**Status**: Not Started
-
----
-
-## Stage 4: SEOリント + 記事システム
+## Stage 3: SEOリント + 記事システム
 
 **Goal**: Markdown記事をテンプレートから作成し、CIでSEO品質を保証
 
@@ -441,7 +336,7 @@ npm run test:seo                # SEOリントのユニットテスト
 
 ---
 
-## Stage 5: 運用ツール + モニタリング
+## Stage 4: 運用ツール + モニタリング
 
 **Goal**: 週次メンテナンスとパフォーマンス監視を自動化
 
@@ -589,13 +484,14 @@ npm install
 npm run build
 ```
 
-#### Googleシート API エラー
+#### データバリデーションエラー
 
 ```bash
-# 権限確認
-# 1. サービスアカウントがシートに招待されているか
-# 2. Sheets API が有効化されているか
-# 3. API キーが正しいか
+# JSONファイルの確認
+# 1. data/products.json が存在するか
+# 2. JSONフォーマットが正しいか
+# 3. Zodスキーマに適合しているか
+npm run validate-data
 ```
 
 #### Vercel デプロイエラー
@@ -612,7 +508,7 @@ npx vercel build
 全ステージのStatusが "Complete" になり、以下が満たされたら完了：
 
 - ✅ Production サイトが稼働
-- ✅ Googleシート編集 → 自動デプロイが動作
+- ✅ データ編集 → PR → マージ → 自動デプロイが動作
 - ✅ 記事追加 → PRマージ → デプロイが動作
 - ✅ SEOリントが全記事で合格
 - ✅ Lighthouse スコアが 90点以上

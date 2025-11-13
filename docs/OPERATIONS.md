@@ -26,23 +26,7 @@
 
 運用を開始する前に、以下のアクセス権限を管理者から付与してもらってください。
 
-#### 1. Google Sheets
-
-**権限レベル**: 編集者
-**対象シート**: 商品管理シート（`products` シート）
-
-**確認方法**:
-
-1. [商品管理シート](https://docs.google.com/spreadsheets/d/...) を開く
-2. セルを編集できればOK
-3. 編集できない場合は管理者に連絡
-
-**注意**:
-
-- ⚠️ Apps Script の編集権限は**不要**（管理者のみ）
-- ✅ シートの閲覧・編集のみできればOK
-
-#### 2. GitHub
+#### 1. GitHub
 
 **権限レベル**: Write
 **対象リポジトリ**: `your-org/your-repo`
@@ -59,7 +43,7 @@
 2. 「Add file」ボタンが表示されればOK
 3. 表示されない場合は管理者に連絡
 
-#### 3. Vercel
+#### 2. Vercel
 
 **権限レベル**: Viewer（閲覧のみ）
 **対象プロジェクト**: `your-project`
@@ -76,7 +60,7 @@
 2. プロジェクトが表示されればOK
 3. 表示されない場合は管理者に招待してもらう
 
-#### 4. Slack
+#### 3. Slack
 
 **必要なチャンネル**:
 
@@ -110,9 +94,6 @@
 
 ### アクセス権限のトラブルシューティング
 
-**Q: Googleシートが編集できない**
-A: 管理者に連絡して「編集者」権限を付与してもらってください。
-
 **Q: GitHubでファイルを作成できない**
 A: リポジトリの「Settings」→「Collaborators」で「Write」権限が付与されているか確認してください。
 
@@ -126,62 +107,50 @@ A: チャンネルに参加しているか確認してください。`/join #aff
 
 ## 日常的な作業
 
-### A. 比較表の更新（所要時間: 5分）
+### A. 商品データの更新（所要時間: 10分）
 
 商品の価格や返金条件が変更された時に実施します。
 
 #### 手順
 
-1. **Googleシートを開く**
-   - ブックマークから「商品管理シート」を開く
-   - 「products」タブを選択
+1. **データファイルを開く**
+   - GitHubで`data/products.json`を開く
+   - 「Edit file」（鉛筆アイコン）をクリック
 
 2. **データを編集**
-   - 該当商品の行を探す（商品名で検索可能）
-   - 変更する列を編集（例: `price_monthly`）
+   - 該当商品のオブジェクトを探す（`"id"`で検索）
+   - 変更する項目を編集（例: `"price_monthly": 12.95`）
    - 必ず以下も更新：
-     - `last_updated`（今日の日付）
-     - `source_url`（公式ページのURL）
+     - `"last_updated"`（今日の日付 `YYYY-MM-DD`形式）
+     - `"source_url"`（公式ページのURL）
 
-3. **保存を確認**
-   - 自動保存されます（左上に「すべての変更を保存しました」と表示）
-   - ⚠️ 保存されないと自動デプロイが始まりません
+3. **PRを作成**
+   - ページ下部の「Commit changes」セクション
+   - 「Create a new branch for this commit」を選択
+   - ブランチ名: `update/product-data`
+   - コミットメッセージ: `fix: update product data for [商品名]`
+   - 「Propose changes」をクリック
 
-4. **デプロイを確認**（5分後）
-   - [Vercel Dashboard](https://vercel.com/dashboard) を開く
-   - 「Deployments」タブで最新のデプロイを確認
-   - ステータスが「Ready」になれば完了
+4. **CIチェックを確認**
+   - 自動的にデータバリデーションが走ります
+   - ✅ 全てのチェックが通ればOK
+   - ❌ エラーが出た場合はJSON形式を確認
 
-5. **プレビューで確認**
-   - デプロイの「Visit」ボタンをクリック
-   - 比較ページ（`/compare`）を開く
-   - 変更した価格が反映されているか確認
+5. **マージ**
+   - 「Merge pull request」をクリック
+   - 「Confirm merge」
+   - 自動的に Vercel デプロイが開始
 
-6. **本番反映**
-   - 問題なければ、自動的に本番サイトにも反映されます
-   - 本番URLでも確認
+6. **本番確認**
+   - 5分後、[Vercel Dashboard](https://vercel.com/dashboard)でデプロイ完了を確認
+   - 本番サイトで変更が反映されているか確認
 
 #### 注意事項
 
-- ❌ `id` 列は絶対に変更しない（記事とのリンクが壊れます）
+- ❌ `id` は絶対に変更しない（記事とのリンクが壊れます）
 - ✅ 価格は必ず公式サイトで確認してから入力
 - ✅ `last_updated` を更新し忘れないこと（法的リスク）
-
-#### 編集可能な列
-
-| 列名            | 説明                 | 例                |
-| --------------- | -------------------- | ----------------- |
-| `name`          | 商品名               | `Surfshark VPN`   |
-| `price_monthly` | 月額料金（USD）      | `12.95`           |
-| `price_annual`  | 年額料金（USD）      | `47.88`           |
-| `refund_days`   | 返金保証日数         | `30`              |
-| `japan_ui`      | 日本語UIあり         | `TRUE` or `FALSE` |
-| `japan_payment` | 日本の決済対応       | `TRUE` or `FALSE` |
-| `japan_support` | 日本語サポート       | `TRUE` or `FALSE` |
-| `japan_docs`    | 日本語ドキュメント   | `TRUE` or `FALSE` |
-| `affiliate_url` | アフィリエイトリンク | `https://...`     |
-| `last_updated`  | 最終確認日           | `2025-10-27`      |
-| `source_url`    | 公式ページURL        | `https://...`     |
+- ✅ JSON形式を壊さないよう注意（カンマ、括弧、クォートなど）
 
 #### よくある質問
 
@@ -189,7 +158,7 @@ A: チャンネルに参加しているか確認してください。`/join #aff
 A: 通常5-10分です。Vercel Dashboardで進捗を確認できます。
 
 **Q: 間違えて編集してしまった！**
-A: Googleシートの「編集履歴」から復元できます（上部メニュー「ファイル」→「変更履歴」→「変更履歴を表示」）
+A: GitHubのPRから「Revert」できます。または別のPRで修正してください。
 
 **Q: 新しい商品を追加したい**
 A: エンジニアに依頼してください。商品追加は記事作成とセットで行います。
@@ -235,7 +204,7 @@ description: 'SurfsharkVPNの実際の使用感、料金、返金方法を徹底
 publishedAt: '2025-10-27'
 updatedAt: '2025-10-27'
 category: 'review'
-productId: 'surfshark-vpn' # ← Googleシートのid列と一致させる
+productId: 'surfshark-vpn' # ← data/products.jsonのid列と一致させる
 keywords: ['Surfshark', 'VPN', 'レビュー', '評判']
 ---
 ```
@@ -244,7 +213,7 @@ keywords: ['Surfshark', 'VPN', 'レビュー', '評判']
 
 - `title`: 30-60文字（SEOチェックで自動判定）
 - `description`: 120-160文字
-- `productId`: Googleシートの `id` 列と完全一致
+- `productId`: data/products.jsonの `id` と完全一致
 - `publishedAt`: 今日の日付
 - `updatedAt`: 今日の日付
 
@@ -356,7 +325,7 @@ A: 他の記事へのリンク：
 
 1. ASP管理画面にログイン（A8.net, Afb等）
 2. 先週のEPC（Earnings Per Click）を確認
-3. Googleシートの「EPC」列を更新
+3. `data/products.json`のEPCデータを更新（PRを作成）
 4. 日本対応スコアと掛け合わせて「推奨度」を計算（自動）
 5. 比較表の並び順が自動的に更新される
 
@@ -399,13 +368,14 @@ A: 他の記事へのリンク：
 
 ## トラブルシューティング
 
-### 🚨 Googleシートを編集したのに反映されない
+### 🚨 データ更新が反映されない
 
 **原因と対処**:
 
-1. **自動保存されていない**
-   - 左上に「すべての変更を保存しました」が出ているか確認
-   - 出ていなければ、セルをもう一度クリックして Enter を押す
+1. **PRがマージされていない**
+   - GitHubでPRのステータスを確認
+   - CIチェックが全て通っているか確認
+   - マージボタンをクリックし忘れていないか確認
 
 2. **GitHub Actions が失敗している**
    - [GitHub Actions](https://github.com/your-org/your-repo/actions) を開く
@@ -440,7 +410,7 @@ A: 他の記事へのリンク：
 
 **チェックポイント**:
 
-1. Googleシートの `affiliate_url` が正しいか
+1. data/products.jsonの `affiliate_url` が正しいか
 2. リンクの有効期限が切れていないか（ASP管理画面で確認）
 3. リンクをクリックして実際に遷移するか確認
 
@@ -448,12 +418,14 @@ A: 他の記事へのリンク：
 
 ## チェックリスト
 
-### 比較表更新時
+### データ更新時
 
 - [ ] 公式サイトで最新情報を確認済み
 - [ ] `last_updated` を今日の日付に更新
 - [ ] `source_url` を記載
-- [ ] Googleシートが保存されている
+- [ ] JSON形式が正しい（カンマ、括弧など）
+- [ ] PRを作成してCIチェックが通過
+- [ ] PRをマージ
 - [ ] Vercel でデプロイ完了を確認
 - [ ] プレビューで変更を確認
 - [ ] 本番サイトで最終確認
@@ -464,7 +436,7 @@ A: 他の記事へのリンク：
 - [ ] Frontmatter を正しく記入
   - [ ] タイトルが30-60文字
   - [ ] description が120-160文字
-  - [ ] productId がシートのidと一致
+  - [ ] productId がdata/products.jsonのidと一致
 - [ ] 必須セクションを記載
   - [ ] 結論ボックス
   - [ ] 詳細レビュー
