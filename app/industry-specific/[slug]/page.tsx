@@ -33,7 +33,7 @@ export async function generateMetadata({
 
   const { frontmatter } = article;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
-  const articleUrl = `${siteUrl}/mild-response/${slug}`;
+  const articleUrl = `${siteUrl}/industry-specific/${slug}`;
   const ogImage = `${siteUrl}/og-default.png`;
 
   return {

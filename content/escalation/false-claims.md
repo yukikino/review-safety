@@ -231,8 +231,8 @@ Googleマップの場合、以下のケースは削除依頼が認められる�
 
 ## 次のステップ
 
-✅ **削除依頼の詳しい手順を知りたい方は**
-→ [Googleマップ・ホットペッパーの削除依頼マニュアル](/escalation/deletion-request)
+✅ **通常のクレーム対応を知りたい方は**
+→ [「待たされた」口コミへの返信テンプレート](/mild-response/waiting-complaint)
 
 ⚠️ **名誉毀損レベルの悪質な口コミに困っている方は**
 → [名誉毀損レベルの口コミへの法的対応と削除依頼](/escalation/defamation-handling)

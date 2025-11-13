@@ -245,8 +245,8 @@ cta: "meo"
 
 ## 次のステップ
 
-✅ **エステ・痩身サロンの口コミ対応を知りたい方は**
-→ [エステ・痩身サロン向け口コミ対応](/industry-specific/esthetic-salon)
+✅ **飲食店の口コミ対応を知りたい方は**
+→ [飲食店向け口コミ対応マニュアル](/industry-specific/restaurant)
 
 ⚠️ **悪質な誹謗中傷に困っている方は**
 → [名誉毀損レベルの口コミへの法的対応と削除依頼](/escalation/defamation-handling)

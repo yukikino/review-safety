@@ -8,7 +8,7 @@ interface BreadcrumbSchemaProps {
 }
 
 export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mibarai-guide.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
   const schema = {
     '@context': 'https://schema.org',
