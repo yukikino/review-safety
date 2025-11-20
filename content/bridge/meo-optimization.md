@@ -20,7 +20,7 @@ MEO（Map Engine Optimization / ローカルSEO）を実施すれば、Googleマ
 
 ## MEOとは？
 
-![MEOとSEOの違いを示す比較図](画像を追加してください)
+![MEOとSEOの違いを示す比較図](./images/meo-seo-comparison.png)
 
 ### MEO（Map Engine Optimization）の定義
 
@@ -36,7 +36,7 @@ MEOが重要な理由は、統計データが明確に示しています。Googl
 
 ## Googleマップ上位表示の仕組み
 
-![Googleランキング要因の3要素を示す図](画像を追加してください)
+![Googleランキング要因の3要素を示す図](./images/google-ranking-factors-three.png)
 
 ### Googleのランキング要因（公式発表）
 
@@ -64,7 +64,7 @@ Google公式発表によると、この要素が最も重要です。つまり�
 
 ## Googleマイビジネス最適化の具体的手順
 
-![Googleマイビジネス最適化の手順を示すフローチャート](画像を追加してください)
+![Googleマイビジネス最適化の手順を示すフローチャート](./images/gmb-optimization-flowchart.png)
 
 ### ステップ1: Googleマイビジネスの登録・認証
 
@@ -107,7 +107,7 @@ Google公式発表によると、この要素が最も重要です。つまり�
 
 #### 写真の追加
 
-![Googleマイビジネスへの写真アップロード例](画像を追加してください)
+![Googleマイビジネスへの写真アップロード例](./images/gmb-photo-upload-example.png)
 
 写真の追加は、顧客の関心を引く重要な要素です。外観は5枚以上、内観は10枚以上、料理・商品は20枚以上、スタッフは3枚以上、そしてロゴを必ずアップロードします。
 
@@ -157,7 +157,7 @@ OK例は、全て「ラ・フェリーチェ 新宿店」で統一すること�
 
 ## ローカルSEOの実践テクニック
 
-![ローカルSEOの主要テクニック一覧](画像を追加してください)
+![ローカルSEOの主要テクニック一覧](./images/local-seo-techniques.png)
 
 ### テクニック1: ローカルキーワードの最適化
 
@@ -185,7 +185,7 @@ OK例は、全て「ラ・フェリーチェ 新宿店」で統一すること�
 
 ## MEO対策の成功事例
 
-![MEO施策前後の順位変化を示すグラフ](画像を追加してください)
+![MEO施策前後の順位変化を示すグラフ](./images/meo-ranking-improvement-graph.png)
 
 ### 事例1: 飲食店（新宿）
 

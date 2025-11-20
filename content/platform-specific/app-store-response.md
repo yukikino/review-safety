@@ -20,7 +20,7 @@ cta: "reputation"
 
 ## App StoreとGoogle Playの返信ルールの違い
 
-![App StoreとGoogle Playの返信機能比較表](画像を追加してください)
+![App StoreとGoogle Playの返信機能比較表](./images/appstore-googleplay-comparison.png)
 
 App StoreとGoogle Playでは、レビューへの返信機能が大きく異なります。
 
@@ -44,7 +44,7 @@ Google Playの特徴として、最近のレビューが重視されるため、
 
 ## 返信テンプレート（App Store・Google Play共通）
 
-![アプリレビューへの返信画面のスクリーンショット](画像を追加してください)
+![アプリレビューへの返信画面のスクリーンショット](./images/app-review-reply-screen.png)
 
 アプリストアのレビューは、技術的な問題、使いにくさ、バグなど、具体的なクレームが多いのが特徴です。
 
@@ -130,7 +130,7 @@ App Store Connectにログインし、「マイApp」→該当アプリを選択
 
 ## Google Play特有の返信ルール
 
-![Google Play Console返信画面の操作手順](画像を追加してください)
+![Google Play Console返信画面の操作手順](./images/google-play-console-reply.png)
 
 Google Playは、App Storeよりも柔軟に返信できます。
 
@@ -174,7 +174,7 @@ Google Play Consoleにログインし、「ユーザーからのフィードバ�
 
 ## アプリストアレビューの削除依頼手順
 
-![削除依頼の手順と承認基準のフローチャート](画像を追加してください)
+![削除依頼の手順と承認基準のフローチャート](./images/deletion-request-flowchart.png)
 
 App StoreとGoogle Playともに、ポリシー違反のレビューは削除申請ができます。
 
@@ -216,7 +216,7 @@ Google Play Consoleにログインし、「評価とレビュー」→「不適�
 
 ## 低評価レビューを減らす予防策
 
-![アプリ改善サイクル：レビュー分析→改善→再評価依頼](画像を追加してください)
+![アプリ改善サイクル：レビュー分析→改善→再評価依頼](./images/app-improvement-cycle.png)
 
 アプリストアで★1レビューを減らすための予防策です。
 

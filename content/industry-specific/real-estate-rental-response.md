@@ -20,7 +20,7 @@ cta: "reputation"
 
 ## 不動産・賃貸業界特有の口コミトラブル
 
-![不動産業界の口コミトラブル発生状況を示すグラフ](画像を追加してください)
+![業界別対応ガイド](./images/real-estate-rental-response-guide.png)
 
 ### トラブル1: おとり物件・虚偽広告
 
@@ -56,7 +56,7 @@ cta: "reputation"
 
 ## 公開返信テンプレート（不動産・賃貸用）
 
-![不動産会社の口コミ返信例画面](画像を追加してください)
+![業界別対応ガイド](./images/real-estate-rental-response-guide.png)
 
 ### テンプレート1: おとり物件疑惑
 
@@ -136,7 +136,7 @@ cta: "reputation"
 
 ## 絶対に書いてはいけないNG返信表現
 
-![炎上リスクを示す警告マーク](画像を追加してください)
+![業界別対応ガイド](./images/real-estate-rental-response-guide.png)
 
 不動産業界の返信には、炎上リスクの高いNG表現があります。これらを使うと、さらなる批判を招きます。
 
@@ -168,7 +168,7 @@ cta: "reputation"
 
 ## 不動産業界の法令遵守ガイド
 
-![宅建業法の主要条文を示す図表](画像を追加してください)
+![業界別対応ガイド](./images/real-estate-rental-response-guide.png)
 
 ### 宅建業法で禁止されている行為
 
@@ -193,7 +193,7 @@ cta: "reputation"
 
 ## 予防策: 不動産トラブルを減らすために
 
-![トラブル予防策の実施チェックリスト](画像を追加してください)
+![業界別対応ガイド](./images/real-estate-rental-response-guide.png)
 
 ### 予防策1: 物件情報の即時更新
 
