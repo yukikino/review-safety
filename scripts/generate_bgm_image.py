@@ -110,7 +110,8 @@ def create_bgm_volume_management():
 
     plt.tight_layout(pad=1.5)
 
-    output_path = Path('content/mild-response/images/bgm-volume-management.png')
+    output_path = Path('public/mild-response/images/bgm-volume-management.png')
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
     plt.close()
     print(f"✓ {output_path}")
