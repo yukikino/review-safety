@@ -563,45 +563,45 @@ def create_google_removal_request_procedure():
     ax.text(6.8, 5.05, '② 削除理由を選択', ha='left', va='center', fontsize=8)
     ax.text(6.8, 4.8, '③ 該当URLを入力して申請', ha='left', va='center', fontsize=8)
 
-    # 成功率
-    success_box = FancyBboxPatch((0.5, 2.5), 11, 1.5,
+    # 成功率（ボックスを拡大）
+    success_box = FancyBboxPatch((0.5, 2.2), 11, 1.9,
                                 boxstyle="round,pad=0.15",
                                 edgecolor='#1976D2', facecolor='#E3F2FD', linewidth=2)
     ax.add_patch(success_box)
-    ax.text(6, 3.8, '【各手法の成功率と費用】', ha='center', va='center', fontsize=10, fontweight='bold', color='#1565C0')
+    ax.text(6, 3.9, '【各手法の成功率と費用】', ha='center', va='center', fontsize=10, fontweight='bold', color='#1565C0')
 
-    # 表形式で表示
-    ax.text(1.5, 3.3, '手法', ha='center', va='center', fontsize=9, fontweight='bold')
-    ax.text(4.5, 3.3, '成功率', ha='center', va='center', fontsize=9, fontweight='bold')
-    ax.text(7.5, 3.3, '費用', ha='center', va='center', fontsize=9, fontweight='bold')
-    ax.text(10, 3.3, '期間', ha='center', va='center', fontsize=9, fontweight='bold')
+    # 表形式で表示（Y座標を調整）
+    ax.text(1.5, 3.5, '手法', ha='center', va='center', fontsize=9, fontweight='bold')
+    ax.text(4.5, 3.5, '成功率', ha='center', va='center', fontsize=9, fontweight='bold')
+    ax.text(7.5, 3.5, '費用', ha='center', va='center', fontsize=9, fontweight='bold')
+    ax.text(10, 3.5, '期間', ha='center', va='center', fontsize=9, fontweight='bold')
 
-    ax.plot([0.7, 11.3], [3.15, 3.15], 'k-', linewidth=1)
+    ax.plot([0.7, 11.3], [3.35, 3.35], 'k-', linewidth=1)
 
-    ax.text(1.5, 2.9, 'まとめサイト削除依頼', ha='center', va='center', fontsize=8)
-    ax.text(4.5, 2.9, '10%', ha='center', va='center', fontsize=8, color='#C62828')
-    ax.text(7.5, 2.9, '無料', ha='center', va='center', fontsize=8, color='#2E7D32')
-    ax.text(10, 2.9, '1週間', ha='center', va='center', fontsize=8)
+    ax.text(1.5, 3.05, 'まとめサイト削除依頼', ha='center', va='center', fontsize=8)
+    ax.text(4.5, 3.05, '10%', ha='center', va='center', fontsize=8, color='#C62828')
+    ax.text(7.5, 3.05, '無料', ha='center', va='center', fontsize=8, color='#2E7D32')
+    ax.text(10, 3.05, '1週間', ha='center', va='center', fontsize=8)
 
-    ax.text(1.5, 2.6, '弁護士削除請求', ha='center', va='center', fontsize=8)
-    ax.text(4.5, 2.6, '60%', ha='center', va='center', fontsize=8, color='#F57C00')
-    ax.text(7.5, 2.6, '10〜30万円', ha='center', va='center', fontsize=8, color='#C62828')
-    ax.text(10, 2.6, '1〜3ヶ月', ha='center', va='center', fontsize=8)
+    ax.text(1.5, 2.7, '弁護士削除請求', ha='center', va='center', fontsize=8)
+    ax.text(4.5, 2.7, '60%', ha='center', va='center', fontsize=8, color='#F57C00')
+    ax.text(7.5, 2.7, '10〜30万円', ha='center', va='center', fontsize=8, color='#C62828')
+    ax.text(10, 2.7, '1〜3ヶ月', ha='center', va='center', fontsize=8)
 
-    ax.text(1.5, 2.3, 'Google削除リクエスト', ha='center', va='center', fontsize=8)
-    ax.text(4.5, 2.3, '30%', ha='center', va='center', fontsize=8, color='#FF9800')
-    ax.text(7.5, 2.3, '無料', ha='center', va='center', fontsize=8, color='#2E7D32')
-    ax.text(10, 2.3, '2〜4週間', ha='center', va='center', fontsize=8)
+    ax.text(1.5, 2.35, 'Google削除リクエスト', ha='center', va='center', fontsize=8)
+    ax.text(4.5, 2.35, '30%', ha='center', va='center', fontsize=8, color='#FF9800')
+    ax.text(7.5, 2.35, '無料', ha='center', va='center', fontsize=8, color='#2E7D32')
+    ax.text(10, 2.35, '2〜4週間', ha='center', va='center', fontsize=8)
 
-    # 重要な注意
-    note_box = FancyBboxPatch((0.5, 0.5), 11, 1.5,
+    # 重要な注意（位置を下にずらす）
+    note_box = FancyBboxPatch((0.5, 0.2), 11, 1.5,
                              boxstyle="round,pad=0.15",
                              edgecolor='#E65100', facecolor='#FFF3E0', linewidth=2)
     ax.add_patch(note_box)
-    ax.text(6, 1.8, '【重要】デジタルタトゥー対策は完全削除が困難', ha='center', va='center', fontsize=10, fontweight='bold', color='#E65100')
-    ax.text(1, 1.4, '・一度拡散した情報は、完全に消すことはほぼ不可能です', ha='left', va='center', fontsize=9)
-    ax.text(1, 1.1, '・削除よりも、新しいポジティブな情報を増やす「レピュテーションマネジメント」が効果的', ha='left', va='center', fontsize=9)
-    ax.text(1, 0.8, '・費用: 月額20万円〜100万円（レピュテーションマネジメント会社）', ha='left', va='center', fontsize=9)
+    ax.text(6, 1.5, '【重要】デジタルタトゥー対策は完全削除が困難', ha='center', va='center', fontsize=10, fontweight='bold', color='#E65100')
+    ax.text(1, 1.1, '・一度拡散した情報は、完全に消すことはほぼ不可能です', ha='left', va='center', fontsize=9)
+    ax.text(1, 0.8, '・削除よりも、新しいポジティブな情報を増やす「レピュテーションマネジメント」が効果的', ha='left', va='center', fontsize=9)
+    ax.text(1, 0.5, '・費用: 月額20万円〜100万円（レピュテーションマネジメント会社）', ha='left', va='center', fontsize=9)
 
     plt.tight_layout()
 
@@ -613,15 +613,21 @@ def create_google_removal_request_procedure():
 
 def create_sns_pre_post_checklist():
     """SNS投稿前チェックリスト"""
-    fig, ax = plt.subplots(figsize=(12, 10))
+    # カテゴリ数と項目数から高さを動的に計算
+    total_categories = 5
+    total_items = 4 + 4 + 4 + 4 + 4  # 各カテゴリ4項目
+    fig_height = max(16, 4.5 + total_categories * 1.2 + total_items * 0.55 + 2.5)
+
+    fig, ax = plt.subplots(figsize=(12, fig_height))
     ax.set_xlim(0, 12)
-    ax.set_ylim(0, 10)
+    ax.set_ylim(0, fig_height)
     ax.axis('off')
 
     # タイトル
-    ax.text(6, 9.5, 'SNS投稿前チェックリスト',
+    title_y = fig_height - 0.5
+    ax.text(6, title_y, 'SNS投稿前チェックリスト',
             ha='center', va='center', fontsize=14, fontweight='bold')
-    ax.text(6, 9.1, '〜炎上を防ぐための10のポイント〜',
+    ax.text(6, title_y - 0.4, '〜炎上を防ぐための10のポイント〜',
             ha='center', va='center', fontsize=11, style='italic')
 
     # チェックリスト項目
@@ -658,17 +664,20 @@ def create_sns_pre_post_checklist():
         ], '#E8F5E9', '#2E7D32')
     ]
 
-    y_position = 8.5
+    y_position = title_y - 1.2
+    item_spacing = 0.55  # 項目間の間隔をさらに広げる
+    category_spacing = 0.7  # カテゴリ間の間隔をさらに広げる
+
     for category, items, bg_color, text_color in checklist_items:
         # カテゴリボックス
-        category_box = FancyBboxPatch((0.5, y_position - 0.4), 11, 0.5,
+        category_box = FancyBboxPatch((0.5, y_position - 0.55), 11, 0.65,
                                      boxstyle="round,pad=0.1",
                                      edgecolor=text_color, facecolor=bg_color, linewidth=2)
         ax.add_patch(category_box)
-        ax.text(1, y_position - 0.15, category, ha='left', va='center',
+        ax.text(1, y_position - 0.225, category, ha='left', va='center',
                 fontsize=11, fontweight='bold', color=text_color)
 
-        y_position -= 0.6
+        y_position -= 0.85
 
         # チェック項目
         for item in items:
@@ -681,20 +690,26 @@ def create_sns_pre_post_checklist():
             # 項目テキスト
             ax.text(1.7, y_position, item, ha='left', va='center', fontsize=9)
 
-            y_position -= 0.35
+            y_position -= item_spacing
 
-        y_position -= 0.2
+        y_position -= category_spacing
 
-    # 使い方ガイド
-    guide_box = FancyBboxPatch((0.5, 0.5), 11, 1.0,
+    # 使い方ガイド（位置を調整）
+    guide_y = y_position - 0.5
+    guide_box = FancyBboxPatch((0.5, guide_y - 0.6), 11, 1.0,
                               boxstyle="round,pad=0.15",
                               edgecolor='#1976D2', facecolor='#E3F2FD', linewidth=2)
     ax.add_patch(guide_box)
-    ax.text(6, 1.3, '【使い方】', ha='center', va='center', fontsize=10, fontweight='bold', color='#1565C0')
-    ax.text(1, 1.0, '① 投稿前にこのチェックリストを印刷またはデジタルで用意', ha='left', va='center', fontsize=9)
-    ax.text(1, 0.75, '② 必ず2名以上で全項目をチェック', ha='left', va='center', fontsize=9)
+    ax.text(6, guide_y + 0.2, '【使い方】', ha='center', va='center', fontsize=10, fontweight='bold', color='#1565C0')
+    ax.text(1, guide_y - 0.1, '① 投稿前にこのチェックリストを印刷またはデジタルで用意', ha='left', va='center', fontsize=9)
+    ax.text(1, guide_y - 0.35, '② 必ず2名以上で全項目をチェック', ha='left', va='center', fontsize=9)
 
-    plt.tight_layout()
+    # Y軸の下限を調整してガイドボックスが確実に表示されるようにする
+    min_y = guide_y - 0.8
+    if min_y < 0:
+        ax.set_ylim(min_y - 0.5, fig_height)
+
+    plt.tight_layout(pad=1.5)
 
     output_path = Path('content/platform-specific/images/sns-pre-post-checklist.png')
     plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')

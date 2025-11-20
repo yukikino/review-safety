@@ -263,22 +263,23 @@ def create_crisis_damage_comparison():
                 ax.text(bar.get_x() + bar.get_width()/2., height + 10,
                        f'{int(height)}万', ha='center', va='bottom', fontsize=8)
 
-    # 合計を表示
+    # 合計を表示（グラフの右上に配置）
     total_no = sum(no_response)
     total_bad = sum(bad_response)
     total_good = sum(good_response)
 
-    ax.text(len(damage_categories) - 1 - width, total_no + 60,
-            f'合計: {total_no}万円', ha='center', va='bottom',
-            fontsize=10, fontweight='bold', color='#C62828',
+    # Y座標を段階的にずらして配置
+    ax.text(0.98, 0.95, f'対応なし 合計: {total_no}万円',
+            transform=ax.transAxes, ha='right', va='top',
+            fontsize=9, fontweight='bold', color='#C62828',
             bbox=dict(boxstyle='round', facecolor='#FFCDD2', alpha=0.8))
-    ax.text(len(damage_categories) - 1, total_bad + 60,
-            f'合計: {total_bad}万円', ha='center', va='bottom',
-            fontsize=10, fontweight='bold', color='#E65100',
+    ax.text(0.98, 0.88, f'不適切な対応 合計: {total_bad}万円',
+            transform=ax.transAxes, ha='right', va='top',
+            fontsize=9, fontweight='bold', color='#E65100',
             bbox=dict(boxstyle='round', facecolor='#FFE0B2', alpha=0.8))
-    ax.text(len(damage_categories) - 1 + width, total_good + 60,
-            f'合計: {total_good}万円', ha='center', va='bottom',
-            fontsize=10, fontweight='bold', color='#2E7D32',
+    ax.text(0.98, 0.81, f'適切な対応 合計: {total_good}万円',
+            transform=ax.transAxes, ha='right', va='top',
+            fontsize=9, fontweight='bold', color='#2E7D32',
             bbox=dict(boxstyle='round', facecolor='#C8E6C9', alpha=0.8))
 
     # グラフ設定

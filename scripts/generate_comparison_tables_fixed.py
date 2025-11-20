@@ -125,10 +125,20 @@ def create_response_tone_comparison():
     ax.text(7, 10.1, '〜口コミの種類別、適切な返信トーン〜',
             ha='center', va='center', fontsize=11, style='italic')
 
-    # ヘッダー
+    # ヘッダー（等間隔＋中央寄せ）
     headers = ['口コミ種類', '推奨トーン', 'NG例', 'OK例']
-    header_x = [1.8, 4.5, 7.8, 11.2]
-    header_widths = [2.4, 2.8, 3.4, 2.8]
+    # セル幅と間隔
+    header_widths = [2.2, 2.2, 3.0, 2.2]
+    gap = 0.6
+    total_width = sum(header_widths) + gap * (len(header_widths) - 1)  # 10.4
+    start_x = (14 - total_width) / 2  # 中央寄せのための開始位置: 1.8
+
+    header_x = [
+        start_x + header_widths[0] / 2,
+        start_x + header_widths[0] + gap + header_widths[1] / 2,
+        start_x + header_widths[0] + gap + header_widths[1] + gap + header_widths[2] / 2,
+        start_x + header_widths[0] + gap + header_widths[1] + gap + header_widths[2] + gap + header_widths[3] / 2
+    ]
 
     for i, (header, x, w) in enumerate(zip(headers, header_x, header_widths)):
         header_box = FancyBboxPatch((x - w/2, 9.2), w, 0.6,
@@ -184,12 +194,12 @@ def create_response_tone_comparison():
                                edgecolor='none', facecolor='#F5F5F5', alpha=0.5)
             ax.add_patch(bg_rect)
 
-        # 各セル
+        # 各セル（ヘッダーと同じX座標と幅に調整）
         cells = [
-            (review['type'], 1.8, 2.4, '#E3F2FD'),
-            (review['tone'], 4.5, 2.8, '#FFF3E0'),
-            (review['ng'], 7.8, 3.4, '#FFEBEE'),
-            (review['ok'], 11.2, 2.8, '#E8F5E9')
+            (review['type'], header_x[0], header_widths[0], '#E3F2FD'),
+            (review['tone'], header_x[1], header_widths[1], '#FFF3E0'),
+            (review['ng'], header_x[2], header_widths[2], '#FFEBEE'),
+            (review['ok'], header_x[3], header_widths[3], '#E8F5E9')
         ]
 
         for text, x, w, color in cells:
@@ -200,8 +210,8 @@ def create_response_tone_comparison():
             ax.text(x, y - row_height/2, text, ha='center', va='center',
                    fontsize=8, linespacing=1.3)
 
-    # 凡例
-    legend_y = y_start - len(review_types) * row_height - 0.3
+    # 凡例（位置を明示的に設定）
+    legend_y = y_start - len(review_types) * row_height - 0.8
     legend_box = FancyBboxPatch((0.5, legend_y - 0.9), 13, 0.9,
                                boxstyle="round,pad=0.15",
                                edgecolor='#1976D2', facecolor='#E3F2FD', linewidth=2)
@@ -210,6 +220,11 @@ def create_response_tone_comparison():
             fontsize=10, fontweight='bold', color='#1565C0')
     ax.text(7, legend_y - 0.6, '① 感情的にならない  ② 具体的な改善を示す  ③ 事務的すぎず、人間味を出す  ④ 攻撃的な口コミには冷静に対応',
             ha='center', va='center', fontsize=9)
+
+    # Y軸の範囲を調整して凡例が確実に表示されるようにする
+    min_y = legend_y - 1.2
+    if min_y < 0:
+        ax.set_ylim(min_y - 0.5, 11)
 
     plt.tight_layout(pad=1.5)
 

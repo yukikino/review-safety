@@ -23,62 +23,71 @@ def create_checklist(title, subtitle, categories, output_path, note=None):
     total_items = sum(len(items) for items in categories.values())
     num_categories = len(categories)
 
-    # 高さを動的に調整
-    fig_height = max(10, 3.5 + num_categories * 0.7 + total_items * 0.4)
+    # 高さを動的に調整（より大きく）
+    fig_height = max(12, 4.0 + num_categories * 1.2 + total_items * 0.5)
     if note:
-        fig_height += 1.5
+        fig_height += 1.8
 
-    fig, ax = plt.subplots(figsize=(13, min(fig_height, 16)))
-    ax.set_xlim(0, 13)
-    ax.set_ylim(0, 10)
+    # Y軸のスケールも動的に調整
+    y_scale = fig_height
+
+    fig, ax = plt.subplots(figsize=(14, fig_height))
+    ax.set_xlim(0, 14)
+    ax.set_ylim(0, y_scale)
     ax.axis('off')
 
-    # タイトル
-    ax.text(6.5, 9.6, title, ha='center', va='center', fontsize=14, fontweight='bold')
+    # タイトル（Y軸スケールに合わせて調整）
+    title_y = y_scale - 0.8
+    ax.text(7, title_y, title, ha='center', va='center', fontsize=15, fontweight='bold')
     if subtitle:
-        ax.text(6.5, 9.2, subtitle, ha='center', va='center', fontsize=11, style='italic')
+        ax.text(7, title_y - 0.6, subtitle, ha='center', va='center', fontsize=12, style='italic')
 
-    y_position = 8.8 if subtitle else 9.2
-    item_spacing = 0.38  # 項目間の余白を増加
-    category_spacing = 0.6  # カテゴリ間の余白を増加
+    y_position = title_y - 1.2 if subtitle else title_y - 0.8
+    item_spacing = 0.5  # 項目間の余白を増加
+    category_spacing = 0.8  # カテゴリ間の余白を増加
 
     for category, items in categories.items():
         # カテゴリヘッダー（サイズを拡大）
-        category_box = FancyBboxPatch((0.5, y_position - 0.5), 12, 0.55,
+        category_box = FancyBboxPatch((0.8, y_position - 0.6), 12.4, 0.65,
                                      boxstyle="round,pad=0.12",
                                      edgecolor='#1976D2', facecolor='#E3F2FD',
                                      linewidth=2)
         ax.add_patch(category_box)
-        ax.text(1.2, y_position - 0.225, category, ha='left', va='center',
+        ax.text(1.5, y_position - 0.275, category, ha='left', va='center',
                 fontsize=11, fontweight='bold', color='#1565C0')
 
-        y_position -= 0.7
+        y_position -= 1.0
 
         # チェック項目
         for item in items:
             # チェックボックス（サイズを拡大）
-            checkbox = FancyBboxPatch((1.3, y_position - 0.18), 0.3, 0.3,
+            checkbox = FancyBboxPatch((1.8, y_position - 0.2), 0.35, 0.35,
                                      boxstyle="round,pad=0.03",
                                      edgecolor='black', facecolor='white',
                                      linewidth=1.5)
             ax.add_patch(checkbox)
 
             # 項目テキスト
-            ax.text(1.85, y_position, item, ha='left', va='center', fontsize=9)
+            ax.text(2.4, y_position, item, ha='left', va='center', fontsize=10)
 
             y_position -= item_spacing
 
         y_position -= category_spacing
 
-    # 注記
+    # 注記（余白を追加して確実に表示）
     if note:
-        note_y = y_position - 0.4
-        note_box = FancyBboxPatch((0.5, note_y - 0.9), 12, 0.9,
+        note_y = y_position - 1.0
+        note_box = FancyBboxPatch((0.8, note_y - 1.0), 12.4, 1.0,
                                  boxstyle="round,pad=0.15",
                                  edgecolor='#1976D2', facecolor='#E3F2FD',
                                  linewidth=2)
         ax.add_patch(note_box)
-        ax.text(6.5, note_y - 0.45, note, ha='center', va='center', fontsize=9)
+        ax.text(7, note_y - 0.5, note, ha='center', va='center', fontsize=10)
+
+        # Y軸の下限を調整して注記が確実に表示されるようにする
+        min_y = note_y - 1.2
+        if min_y < 0:
+            ax.set_ylim(min_y - 0.5, y_scale)
 
     plt.tight_layout(pad=1.5)
     plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
