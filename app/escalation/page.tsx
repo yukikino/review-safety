@@ -7,8 +7,8 @@ import { ArticleCard } from '@/components/article-card';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
 export const metadata: Metadata = {
-  title: 'エスカレーション管理｜炎上・法的対応ガイド | Review Safety',
-  description: '誹謗中傷、名誉毀損、炎上レビューへの対応マニュアル。弁護士相談、削除申請、損害賠償請求の判断基準と手順を解説。悪質クレームからビジネスを守る実践ガイド。',
+  title: '【弁護士監修】誹謗中傷・炎上レビュー対応マニュアル｜削除申請・法的措置の判断基準',
+  description: '誹謗中傷、名誉毀損、炎上レビューへの対応マニュアル。弁護士相談のタイミング、削除申請手順、損害賠償請求の判断基準を解説。悪質クレームからビジネスを守る実践ガイド。',
   keywords: ['エスカレーション', '炎上対応', '誹謗中傷', '名誉毀損', '弁護士', '削除申請', '損害賠償'],
   alternates: {
     canonical: `${siteUrl}/escalation`,

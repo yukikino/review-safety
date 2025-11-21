@@ -7,8 +7,8 @@ import { ArticleCard } from '@/components/article-card';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
 export const metadata: Metadata = {
-  title: '業種別対応｜飲食店・美容室・ホテル向けガイド | Review Safety',
-  description: '飲食店、美容室、ホテル、病院など業種別の口コミ対応マニュアル。業界特有のクレームパターンと返信テンプレート、炎上リスクの高いNG表現を詳しく解説。',
+  title: '【業種別】飲食店・美容室・ホテルの口コミ対応マニュアル14選｜絶対NGな返信例',
+  description: '飲食店、美容室、ホテル、病院など業種別の口コミ対応マニュアル14選。業界特有のクレームパターンと返信テンプレート、炎上リスクの高いNG表現を詳しく解説。薬機法・医療広告ガイドライン対応。',
   keywords: ['業種別対応', '飲食店', '美容室', 'ホテル', '病院', '口コミ対応', 'クレーム'],
   alternates: {
     canonical: `${siteUrl}/industry-specific`,

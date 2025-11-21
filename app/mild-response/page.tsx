@@ -7,8 +7,8 @@ import { ArticleCard } from '@/components/article-card';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
 export const metadata: Metadata = {
-  title: '軽度クレーム対応｜返信テンプレート集 | Review Safety',
-  description: '「待たされた」「態度が悪い」など軽度クレームへの返信テンプレート19選。Googleマップ・食べログの★1レビュー対応マニュアル。飲食店・美容室向けの実践的な口コミ対応ガイド。',
+  title: '【コピペOK】軽度クレーム返信テンプレート19選｜待たされた・態度が悪い対応例',
+  description: '「待たされた」「態度が悪い」など軽度クレームへの返信テンプレート19選。Googleマップ・食べログの★1レビュー対応マニュアル。飲食店・美容室向けの実践的な口コミ対応ガイド。コピペですぐ使える例文付き。',
   keywords: ['軽度クレーム', '返信テンプレート', '口コミ対応', 'Googleマップ', '食べログ', '飲食店', '美容室'],
   alternates: {
     canonical: `${siteUrl}/mild-response`,

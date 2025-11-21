@@ -9,9 +9,9 @@ const FAQAccordion = dynamic(() => import('@/components/faq-accordion').then(mod
 });
 
 export const metadata = {
-  title: '低評価口コミ・クレーム対応マニュアル｜返信テンプレ＋対応フロー',
+  title: '【コピペOK】Googleマップ★1レビュー返信テンプレート63選｜2025年最新版',
   description:
-    '悪い口コミやクレーム対応に困っている店舗オーナー向けの実務メディア。Googleマップやホットペッパーの★1レビューへの返信テンプレートから、削除依頼、法的対応まで段階別に解説。',
+    '悪い口コミやクレーム対応に困っている店舗オーナー向け。Googleマップ・食べログ・ホットペッパーの★1レビューへの返信テンプレート63選をコピペで使える形で提供。削除依頼、法的対応まで段階別に解説。',
 };
 
 export default async function HomePage() {

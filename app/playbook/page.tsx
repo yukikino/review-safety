@@ -7,8 +7,8 @@ import { ArticleCard } from '@/components/article-card';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
 export const metadata: Metadata = {
-  title: '実践ガイド｜口コミ管理・評価改善の総合マニュアル | Review Safety',
-  description: 'Googleマップ最適化、MEO対策、口コミ管理システム、スタッフ教育など、評判管理の実践ガイド。レビュー監視、返信フロー、評価改善の具体的な手順を解説。',
+  title: '【完全版】Googleマップ口コミ管理・MEO対策マニュアル｜評価4.5→4.8に改善した実践手順',
+  description: 'Googleマップ最適化、MEO対策、口コミ管理システム、スタッフ教育など、評判管理の実践ガイド。レビュー監視、返信フロー、評価改善の具体的な手順を5ステップで解説。',
   keywords: ['実践ガイド', 'MEO対策', '口コミ管理', 'Googleマップ', 'レビュー監視', 'スタッフ教育'],
   alternates: {
     canonical: `${siteUrl}/playbook`,
