@@ -20,6 +20,8 @@ cta: "tool"
 
 ## Googleポリシーで禁止されている行為
 
+> **💡 ヒント**: 口コミ返信の基本フローは[口コミ対応完全ガイド](/playbook/complete-workflow)、高評価返信は[高評価口コミ返信ガイド](/playbook/positive-review-response)、返信テンプレート管理は[テンプレート管理マニュアル](/playbook/template-management)をご覧ください。
+
 まず、**絶対にやってはいけない行為**を確認しましょう。
 
 ### 禁止1: インセンティブ供与（報酬・割引）

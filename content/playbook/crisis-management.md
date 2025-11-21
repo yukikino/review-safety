@@ -20,6 +20,8 @@ SNS(Twitter/X、Instagram)で店舗への批判が拡散されている状況や
 
 ## 口コミ炎上とは何か（定義と兆候）
 
+> **💡 ヒント**: 通常のクレーム対応は[軽度クレーム対応一覧](/mild-response/)、法的対応が必要な場合は[エスカレーション対応一覧](/escalation/)をご覧ください。炎上予防の基本フローは[口コミ対応完全ガイド](/playbook/complete-workflow)、名誉毀損対応は[名誉毀損対応マニュアル](/escalation/defamation-handling)もご参照ください。
+
 ### 炎上の定義
 
 **口コミ炎上とは:**
