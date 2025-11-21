@@ -74,6 +74,8 @@ cta: "reputation"
 
 ---
 
+> **💡 ヒント**: 口コミ対応の基本は[軽度クレーム対応一覧](/mild-response/)、運用マニュアルは[運用マニュアル一覧](/playbook/)をご覧ください。テンプレート管理は[口コミ返信効率化](/playbook/template-management)、監視ツールは[口コミ監視ツール比較](/bridge/monitoring-tools)もご参照ください。
+
 ## 口コミ返信代行サービスの選び方
 
 ![代行サービス選定のチェックリスト](./images/service-selection-checklist.png)

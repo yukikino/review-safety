@@ -130,6 +130,8 @@ Canlyは日本企業向けに作られた監視ツールで、複数プラット
 
 ---
 
+> **💡 ヒント**: 口コミ対応の効率化は[口コミ返信効率化](/playbook/template-management)、外注サービスは[口コミ返信外注](/bridge/response-outsourcing)をご覧ください。運用マニュアルの他の記事は[運用マニュアル一覧](/playbook/)で確認できます。
+
 ## ツール選定のポイント
 
 ![ツール選定チェックリスト](./images/tool-selection-checklist.png)

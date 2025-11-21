@@ -130,6 +130,8 @@ cta: "reputation"
 
 ---
 
+> **💡 ヒント**: エスカレーション対応は[エスカレーション対応一覧](/escalation/)、法的対応は[誹謗中傷への法的対応](/escalation/defamation-handling)をご覧ください。炎上後の信頼回復は[ブランド再構築戦略](/bridge/brand-rebuilding-strategy)もご参照ください。
+
 ## 絶対に書いてはいけないNG返信表現
 
 ![NG返信例と正しい対応の比較](./images/ng-vs-correct-responses.png)

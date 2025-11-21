@@ -95,6 +95,8 @@ SNSでのポジティブ情報発信も再開します。改善内容の報告�
 
 ---
 
+> **💡 ヒント**: 炎上対応の初動は[炎上時の危機管理マニュアル](/playbook/crisis-management)、謝罪失敗からの立て直しは[謝罪したのに炎上した対応](/bridge/response-backfired)をご覧ください。エスカレーション対応は[エスカレーション対応一覧](/escalation/)、法的対応は[誹謗中傷への法的対応](/escalation/defamation-handling)もご参照ください。
+
 ## 炎上の種類別対応
 
 ![炎上の種類ごとの対応フローチャート](./images/crisis-type-flowchart.png)
