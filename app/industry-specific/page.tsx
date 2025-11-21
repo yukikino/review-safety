@@ -44,8 +44,8 @@ export default async function IndustrySpecificPage() {
         position: index + 1,
         item: {
           '@type': 'Article',
-          name: article.title,
-          description: article.description,
+          name: article.frontmatter.title,
+          description: article.frontmatter.description,
           url: `${siteUrl}/industry-specific/${article.slug}`,
         },
       })),
