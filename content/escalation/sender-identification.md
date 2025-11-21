@@ -68,6 +68,8 @@ cta: "reputation"
 
 ## 削除依頼/法的手続きの判断基準
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。名誉毀損対応は[名誉毀損対応マニュアル](/escalation/defamation-handling)、削除申請は[Google口コミ削除依頼](/escalation/google-review-deletion)、営業妨害対応は[営業妨害対応マニュアル](/escalation/business-obstruction)もご参照ください。
+
 発信者情報開示請求が認められるためには、投稿が違法であることを証明する必要があります。
 
 ### 発信者情報開示請求が認められる可能性が高いケース

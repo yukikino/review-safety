@@ -70,6 +70,8 @@ cta: "reputation"
 
 ## 削除依頼/法的手続きの判断基準
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。事実無根の口コミは[事実と違う口コミ対応](/escalation/false-claims)、名誉毀損レベルの対応は[名誉毀損対応](/escalation/defamation-handling)、脅迫・恐喝は[脅迫対応マニュアル](/escalation/threat-extortion-emergency)もご参照ください。
+
 すべての悪い口コミが削除対象になるわけではありません。Googleのポリシー違反に該当するかどうかを確認しましょう。
 
 ### Googleポリシー違反の8つのパターン

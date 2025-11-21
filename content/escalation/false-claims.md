@@ -68,6 +68,8 @@ cta: "reputation"
 
 ## 公開返信でどこまで反論していいか
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。名誉毀損レベルの対応は[名誉毀損対応](/escalation/defamation-handling)、削除申請は[Google口コミ削除依頼](/escalation/google-review-deletion)、脅迫・恐喝は[脅迫対応マニュアル](/escalation/threat-extortion-emergency)もご参照ください。
+
 事実と異なる内容が書かれていても、**公開返信では長文の反論は避ける**べきです。
 
 ### 推奨する対応レベル

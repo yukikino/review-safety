@@ -72,6 +72,8 @@ cta: "reputation"
 
 ### NGな書き方
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。エスカレーション対応の他のケースは[エスカレーション対応一覧](/escalation/)で確認できます。事実無根の口コミは[事実と違う口コミ対応](/escalation/false-claims)、削除申請は[Google口コミ削除依頼](/escalation/google-review-deletion)もご参照ください。
+
 #### NG例1: 感情的な反論
 
 ```

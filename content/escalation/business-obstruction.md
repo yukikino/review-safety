@@ -87,6 +87,8 @@ cta: "reputation"
 
 ## 削除依頼/法的手続きの判断基準
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。名誉毀損対応は[名誉毀損対応マニュアル](/escalation/defamation-handling)、削除申請は[Google口コミ削除依頼](/escalation/google-review-deletion)、競合による嫌がらせは[競合嫌がらせ対応](/escalation/competitor-harassment)もご参照ください。
+
 営業妨害で訴える前に、まずは削除依頼を試すことをおすすめします。
 
 ### 削除依頼を先に試すべき理由

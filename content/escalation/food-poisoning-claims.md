@@ -76,6 +76,8 @@ cta: "reputation"
 
 ## 公開返信テンプレ（食中毒疑惑用）
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。飲食店向けの対応は[飲食店の口コミ対応](/industry-specific/restaurant)、名誉毀損対応は[名誉毀損対応マニュアル](/escalation/defamation-handling)、削除申請は[Google口コミ削除依頼](/escalation/google-review-deletion)もご参照ください。
+
 食中毒疑惑の公開返信は、**絶対に法的責任を認めない**ことが重要です。以下のテンプレートは、弁護士監修の一般的な返信例です。
 
 ### 返信テンプレート（基本パターン）
