@@ -52,6 +52,8 @@ Instagramには公式のレビュー機能はありませんが、複数の場�
 
 ## コメント欄への返信テンプレート
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)、炎上対応は[炎上時の緊急対応マニュアル](/playbook/crisis-management)をご覧ください。プラットフォーム別対応の他の記事は[プラットフォーム別対応一覧](/platform-specific/)で確認できます。Twitter炎上対応は[Twitter炎上対応マニュアル](/platform-specific/twitter-crisis-management)もご参照ください。
+
 ![Instagramコメント返信画面のスクリーンショット](./images/instagram-comment-reply-screen.png)
 
 Instagram投稿のコメント欄は公開されているため、返信内容が第三者にも見られます。公開の場では簡潔に謝罪のみを行い、詳細なやり取りはDMに誘導することが重要です。第三者に「誠実に対応している」という印象を与えることを意識してください。

@@ -114,6 +114,8 @@ NG表現として、「本意ではなかったのですが、〇〇という意
 
 ---
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)、エスカレーション対応は[エスカレーション対応一覧](/escalation/)をご覧ください。プラットフォーム別対応の他の記事は[プラットフォーム別対応一覧](/platform-specific/)で確認できます。炎上対応は[炎上時の危機管理マニュアル](/playbook/crisis-management)、Instagram炎上は[Instagram炎上対応](/platform-specific/instagram-response)もご参照ください。
+
 ## リプライ（返信）への対応方法
 
 炎上ツイートに大量のリプライが来た場合の対応方法です。

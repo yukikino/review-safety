@@ -120,6 +120,8 @@ NGワードが多すぎると、正常なコメントもブロックされる可
 
 ---
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)、エスカレーション対応は[エスカレーション対応一覧](/escalation/)をご覧ください。プラットフォーム別対応の他の記事は[プラットフォーム別対応一覧](/platform-specific/)で確認できます。炎上対応は[炎上時の危機管理マニュアル](/playbook/crisis-management)、Twitter炎上は[Twitter炎上対応](/platform-specific/twitter-crisis-management)もご参照ください。
+
 ## 荒らしコメントへの返信は必要か？
 
 ![コメント返信判断フローチャート：返信すべきケースとすべきでないケース](./images/comment-reply-decision-flowchart.png)

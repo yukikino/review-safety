@@ -150,6 +150,8 @@ Google Play Consoleにログインし、「ユーザーからのフィードバ�
 
 ---
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)、エスカレーション対応は[エスカレーション対応一覧](/escalation/)をご覧ください。プラットフォーム別対応の他の記事は[プラットフォーム別対応一覧](/platform-specific/)で確認できます。Amazon対応は[Amazon出品者コメント対応](/platform-specific/amazon-review-response)、誹謗中傷対応は[誹謗中傷への法的対応](/escalation/defamation-handling)もご参照ください。
+
 ## 絶対に書いてはいけないNG返信表現
 
 アプリストアの返信には、炎上リスクの高いNG表現があります。

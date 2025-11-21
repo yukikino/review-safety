@@ -93,6 +93,8 @@ cta: "meo"
 
 ## ホットペッパー特有のNG返信表現
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)、業種別の対応は[業種別対応一覧](/industry-specific/)をご覧ください。プラットフォーム別対応の他の記事は[プラットフォーム別対応一覧](/platform-specific/)で確認できます。飲食店・美容室向け対応は[飲食店の口コミ対応](/industry-specific/restaurant)、[美容室の口コミ対応](/industry-specific/hair-salon)もご参照ください。
+
 ![ホットペッパーポリシー違反の警告イメージ](./images/hotpepper-policy-warning.png)
 
 ホットペッパーには、リクルート社の審査基準があり、違反する返信は削除される可能性があります。
