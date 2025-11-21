@@ -143,6 +143,18 @@ export default async function HomePage() {
                   </Link>
                 ))}
               </div>
+              <div className="text-center mt-8">
+                <Link
+                  href="/playbook"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 rounded-lg font-semibold transition-all hover:shadow-lg"
+                  style={{
+                    borderColor: '#1976D2',
+                    color: '#1976D2'
+                  }}
+                >
+                  すべての実践ガイドを見る（全{playbookArticles.length}件）→
+                </Link>
+              </div>
             </section>
           )}
 
@@ -158,7 +170,7 @@ export default async function HomePage() {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {mildResponseArticles.map((article) => (
+                {mildResponseArticles.slice(0, 6).map((article) => (
                   <Link
                     key={article.slug}
                     href={`/mild-response/${article.slug}`}
@@ -187,6 +199,18 @@ export default async function HomePage() {
                   </Link>
                 ))}
               </div>
+              <div className="text-center mt-8">
+                <Link
+                  href="/mild-response"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 rounded-lg font-semibold transition-all hover:shadow-lg"
+                  style={{
+                    borderColor: 'var(--primary-blue)',
+                    color: 'var(--primary-blue)'
+                  }}
+                >
+                  すべての軽度クレーム対応を見る（全{mildResponseArticles.length}件）→
+                </Link>
+              </div>
             </section>
           )}
 
@@ -202,7 +226,7 @@ export default async function HomePage() {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {escalationArticles.map((article) => (
+                {escalationArticles.slice(0, 4).map((article) => (
                   <Link
                     key={article.slug}
                     href={`/escalation/${article.slug}`}
@@ -231,6 +255,18 @@ export default async function HomePage() {
                   </Link>
                 ))}
               </div>
+              <div className="text-center mt-8">
+                <Link
+                  href="/escalation"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 rounded-lg font-semibold transition-all hover:shadow-lg"
+                  style={{
+                    borderColor: '#E65100',
+                    color: '#E65100'
+                  }}
+                >
+                  すべてのエスカレーション対応を見る（全{escalationArticles.length}件）→
+                </Link>
+              </div>
             </section>
           )}
 
@@ -246,7 +282,7 @@ export default async function HomePage() {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {industrySpecificArticles.map((article) => (
+                {industrySpecificArticles.slice(0, 4).map((article) => (
                   <Link
                     key={article.slug}
                     href={`/industry-specific/${article.slug}`}
@@ -274,6 +310,18 @@ export default async function HomePage() {
                     </span>
                   </Link>
                 ))}
+              </div>
+              <div className="text-center mt-8">
+                <Link
+                  href="/industry-specific"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 rounded-lg font-semibold transition-all hover:shadow-lg"
+                  style={{
+                    borderColor: '#2E7D32',
+                    color: '#2E7D32'
+                  }}
+                >
+                  すべての業種別対応を見る（全{industrySpecificArticles.length}件）→
+                </Link>
               </div>
             </section>
           )}
