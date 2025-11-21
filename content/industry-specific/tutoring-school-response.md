@@ -58,6 +58,8 @@ cta: "reputation"
 
 ## 公開返信テンプレート（学習塾・予備校用）
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。業種別対応の他の事例は[業種別対応一覧](/industry-specific/)で確認できます。一般的な学習塾対応は[学習塾の口コミ対応](/industry-specific/school)、金銭要求への対応は[示談金・慰謝料請求対応](/escalation/money-demand-settlement)もご参照ください。
+
 ### テンプレート1: 成績が上がらない
 
 ```

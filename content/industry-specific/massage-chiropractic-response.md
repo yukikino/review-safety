@@ -50,6 +50,8 @@ cta: "meo"
 
 ## 公開返信テンプレート（整体・マッサージ店用）
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。業種別対応の他の事例は[業種別対応一覧](/industry-specific/)で確認できます。接骨院・整体院対応は[整体院の口コミ対応](/industry-specific/chiropractor)、名誉毀損対応は[名誉毀損対応マニュアル](/escalation/defamation-handling)もご参照ください。
+
 ![業界別対応ガイド](./images/massage-chiropractic-response-guide.png)
 
 ### テンプレート1: 施術効果への不満

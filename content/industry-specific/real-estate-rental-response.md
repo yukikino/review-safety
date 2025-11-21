@@ -56,6 +56,8 @@ cta: "reputation"
 
 ## 公開返信テンプレート（不動産・賃貸用）
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。業種別対応の他の事例は[業種別対応一覧](/industry-specific/)で確認できます。騒音クレームは[騒音クレーム対応](/mild-response/noise-complaint)、金銭要求への対応は[示談金・慰謝料請求対応](/escalation/money-demand-settlement)もご参照ください。
+
 ![業界別対応ガイド](./images/real-estate-rental-response-guide.png)
 
 ### テンプレート1: おとり物件疑惑

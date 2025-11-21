@@ -58,6 +58,8 @@ cta: "reputation"
 
 ## 公開返信テンプレート（介護施設・デイサービス用）
 
+> **💡 ヒント**: 軽度のクレームへの対応は[軽度クレーム対応一覧](/mild-response/)をご覧ください。業種別対応の他の事例は[業種別対応一覧](/industry-specific/)で確認できます。スタッフ態度クレームは[スタッフ態度クレーム対応](/mild-response/staff-attitude-complaint)、清潔感クレームは[清潔感クレーム対応](/mild-response/cleanliness-complaint)もご参照ください。
+
 ### テンプレート1: 虐待疑惑
 
 ```
