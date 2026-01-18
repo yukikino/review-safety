@@ -60,39 +60,18 @@ export default async function PlatformSpecificPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <Breadcrumb items={breadcrumbItems} />
 
-        <section style={{ marginBottom: '3rem' }}>
-          <h1 style={{
-            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-            fontWeight: 'bold',
-            color: 'var(--gray-900)',
-            marginBottom: '1rem',
-            lineHeight: '1.2',
-          }}>
+        <section className="mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             プラットフォーム別対応｜Google・Twitter・Instagram炎上対策
           </h1>
-          <p style={{
-            fontSize: '1.125rem',
-            color: 'var(--gray-700)',
-            lineHeight: '1.8',
-            marginBottom: '1.5rem',
-          }}>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
             Googleマップ、Twitter、Instagram、食べログなど、プラットフォームごとの口コミ・炎上対応マニュアルです。各プラットフォームの削除申請手順、報告方法、クライシス管理のベストプラクティスを詳しく解説します。
           </p>
-          <div style={{
-            backgroundColor: '#FCE4EC',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            borderLeft: '4px solid #C2185B',
-          }}>
-            <p style={{
-              fontSize: '0.95rem',
-              color: 'var(--gray-700)',
-              lineHeight: '1.8',
-              margin: 0,
-            }}>
+          <div className="bg-pink-50 p-4 md:p-6 rounded-lg border-l-4 border-pink-700">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed m-0">
               <strong>🚨 このカテゴリの使い方：</strong>
               プラットフォームごとに、規約、削除申請の基準、対応時間の目安が異なります。対象プラットフォームの記事を参照し、適切な手順で対応してください。
             </p>
@@ -100,22 +79,11 @@ export default async function PlatformSpecificPage() {
         </section>
 
         <section>
-          <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            color: 'var(--gray-900)',
-            marginBottom: '1.5rem',
-            borderBottom: '2px solid var(--primary-blue)',
-            paddingBottom: '0.5rem',
-          }}>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 border-b-2 border-blue-600 pb-2">
             記事一覧（全{articles.length}件）
           </h2>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-            gap: '1.5rem',
-          }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {articles.map((article) => (
               <ArticleCard
                 key={article.slug}

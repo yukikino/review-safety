@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import type { ReactNode } from 'react';
 
 interface ArticleCardProps {
   href: string;
@@ -25,31 +24,17 @@ export function ArticleCard({
   return (
     <Link
       href={href}
-      className="article-card-hover"
-      style={{
-        display: 'block',
-        backgroundColor: 'white',
-        borderRadius: '8px',
-        padding: '1.5rem',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        transition: 'all 0.3s ease',
-        textDecoration: 'none',
-        border: '1px solid #e5e7eb',
-      }}
+      className="article-card-hover block bg-white rounded-lg p-4 md:p-6 shadow-sm border border-gray-200 transition-all duration-300 no-underline"
     >
       {tags && tags.length > 0 && (
-        <div style={{ marginBottom: '0.75rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+        <div className="mb-3 flex flex-wrap gap-2">
           {tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
+              className="inline-block px-3 py-1 rounded-full text-xs font-medium"
               style={{
-                display: 'inline-block',
                 backgroundColor: tagBgColor,
                 color: tagColor,
-                padding: '0.25rem 0.75rem',
-                borderRadius: '12px',
-                fontSize: '0.75rem',
-                fontWeight: '500',
               }}
             >
               {tag}
@@ -58,32 +43,18 @@ export function ArticleCard({
         </div>
       )}
 
-      <h3 style={{
-        fontSize: '1.125rem',
-        fontWeight: 'bold',
-        color: 'var(--gray-900)',
-        marginBottom: '0.75rem',
-        lineHeight: '1.4',
-      }}>
+      <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 md:mb-3 leading-snug line-clamp-2">
         {title}
       </h3>
 
-      <p style={{
-        fontSize: '0.875rem',
-        color: 'var(--gray-600)',
-        lineHeight: '1.6',
-        marginBottom: '1rem',
-      }}>
+      <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-3 md:mb-4">
         {description}
       </p>
 
-      <span style={{
-        color: linkColor,
-        fontSize: '0.875rem',
-        fontWeight: '500',
-        display: 'inline-flex',
-        alignItems: 'center',
-      }}>
+      <span
+        className="text-sm font-medium inline-flex items-center"
+        style={{ color: linkColor }}
+      >
         続きを読む →
       </span>
     </Link>

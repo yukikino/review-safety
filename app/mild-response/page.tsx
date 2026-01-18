@@ -60,39 +60,18 @@ export default async function MildResponsePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <Breadcrumb items={breadcrumbItems} />
 
-        <section style={{ marginBottom: '3rem' }}>
-          <h1 style={{
-            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-            fontWeight: 'bold',
-            color: 'var(--gray-900)',
-            marginBottom: '1rem',
-            lineHeight: '1.2',
-          }}>
+        <section className="mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             軽度クレーム対応｜返信テンプレート集
           </h1>
-          <p style={{
-            fontSize: '1.125rem',
-            color: 'var(--gray-700)',
-            lineHeight: '1.8',
-            marginBottom: '1.5rem',
-          }}>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
             「待たされた」「態度が悪い」「清潔感がない」など、軽度クレームへの返信テンプレートと対応マニュアルをまとめました。Googleマップや食べログでの★1〜2レビューに対する適切な返信方法を、実例とともに解説します。
           </p>
-          <div style={{
-            backgroundColor: 'var(--background-secondary)',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            borderLeft: '4px solid var(--primary-blue)',
-          }}>
-            <p style={{
-              fontSize: '0.95rem',
-              color: 'var(--gray-700)',
-              lineHeight: '1.8',
-              margin: 0,
-            }}>
+          <div className="bg-gray-50 p-4 md:p-6 rounded-lg border-l-4 border-blue-600">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed m-0">
               <strong>💡 このカテゴリの使い方：</strong>
               軽度クレームは適切に対応すれば、顧客満足度の向上につながります。各記事では、クレームの種類別に返信テンプレート、NG表現、改善策を詳しく解説しています。
             </p>
@@ -100,22 +79,11 @@ export default async function MildResponsePage() {
         </section>
 
         <section>
-          <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            color: 'var(--gray-900)',
-            marginBottom: '1.5rem',
-            borderBottom: '2px solid var(--primary-blue)',
-            paddingBottom: '0.5rem',
-          }}>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 border-b-2 border-blue-600 pb-2">
             記事一覧（全{articles.length}件）
           </h2>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '1.5rem',
-          }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {articles.map((article) => (
               <ArticleCard
                 key={article.slug}

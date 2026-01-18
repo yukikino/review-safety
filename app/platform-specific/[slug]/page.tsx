@@ -9,6 +9,7 @@ import { CTAMeoTool } from '@/components/cta-meo-tool';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SidebarCTA } from '@/components/sidebar-cta';
 import { ArticleViewTracker } from '@/components/analytics/ArticleViewTracker';
+import { ScrollProgress } from '@/components/scroll-progress';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -113,11 +114,10 @@ export default async function PlatformSpecificPage({ params }: PageProps) {
         url={articleUrl}
       />
 
-      {/* Scroll progress bar */}
-      <div className="scroll-progress" id="scroll-progress" style={{ width: '0%' }}></div>
+      <ScrollProgress />
 
-      <div className="min-h-screen" style={{ background: 'var(--background-secondary)' }}>
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="min-h-screen overflow-x-hidden" style={{ background: 'var(--background-secondary)' }}>
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 py-6 md:py-8 max-w-7xl overflow-x-hidden">
           <Breadcrumb
             items={[
               { name: 'ホーム', url: '/' },
@@ -125,11 +125,11 @@ export default async function PlatformSpecificPage({ params }: PageProps) {
               { name: frontmatter.title, url: `/platform-specific/${slug}` },
             ]}
           />
-          <div className="grid lg:grid-cols-[1fr_280px] gap-8">
+          <div className="grid lg:grid-cols-[1fr_280px] gap-6 md:gap-8 overflow-x-hidden">
             {/* メインコンテンツ */}
-            <article>
-              <header className="mb-8 card p-8 animate-fadeInUp">
-                <div className="flex gap-2 flex-wrap mb-6">
+            <article className="min-w-0 overflow-x-hidden">
+              <header className="mb-6 md:mb-8 card p-4 md:p-6 lg:p-8 animate-fadeInUp">
+                <div className="flex gap-2 flex-wrap mb-4 md:mb-6">
                   {frontmatter.tags?.map((tag) => (
                     <span key={tag} className="badge-primary">
                       #{tag}
@@ -137,12 +137,12 @@ export default async function PlatformSpecificPage({ params }: PageProps) {
                   ))}
                 </div>
                 <h1
-                  className="text-3xl md:text-4xl font-bold mb-6 leading-tight"
+                  className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 leading-tight"
                   style={{ color: 'var(--gray-900)' }}
                 >
                   {frontmatter.title}
                 </h1>
-                <div className="flex gap-6 text-sm" style={{ color: 'var(--foreground-muted)' }}>
+                <div className="flex flex-wrap gap-4 md:gap-6 text-xs md:text-sm" style={{ color: 'var(--foreground-muted)' }}>
                   <time dateTime={frontmatter.date} className="flex items-center gap-2">
                     <span>📅</span>
                     {new Date(frontmatter.date).toLocaleDateString('ja-JP')}
@@ -154,7 +154,7 @@ export default async function PlatformSpecificPage({ params }: PageProps) {
                 </div>
               </header>
 
-              <div className="card p-8 md:p-12 mb-8 animate-fadeInUp">
+              <div className="card p-4 md:p-8 lg:p-12 mb-6 md:mb-8 animate-fadeInUp">
                 <div
                   className="prose prose-lg max-w-none"
                   dangerouslySetInnerHTML={{ __html: htmlContent }}
@@ -223,27 +223,6 @@ export default async function PlatformSpecificPage({ params }: PageProps) {
           </div>
         </div>
       </div>
-
-      {/* Scroll progress JavaScript */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              function updateScrollProgress() {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                const progressBar = document.getElementById('scroll-progress');
-                if (progressBar) {
-                  progressBar.style.width = scrolled + '%';
-                }
-              }
-              window.addEventListener('scroll', updateScrollProgress);
-              updateScrollProgress();
-            })();
-          `,
-        }}
-      />
     </>
   );
 }

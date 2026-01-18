@@ -60,39 +60,18 @@ export default async function IndustrySpecificPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <Breadcrumb items={breadcrumbItems} />
 
-        <section style={{ marginBottom: '3rem' }}>
-          <h1 style={{
-            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-            fontWeight: 'bold',
-            color: 'var(--gray-900)',
-            marginBottom: '1rem',
-            lineHeight: '1.2',
-          }}>
+        <section className="mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             業種別対応｜飲食店・美容室・ホテル向けガイド
           </h1>
-          <p style={{
-            fontSize: '1.125rem',
-            color: 'var(--gray-700)',
-            lineHeight: '1.8',
-            marginBottom: '1.5rem',
-          }}>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
             飲食店、美容室、ホテル、病院など、業種別の口コミ対応マニュアルです。各業界特有のクレームパターン、炎上リスクの高いNG表現、適切な返信テンプレートを、実例とともに詳しく解説します。
           </p>
-          <div style={{
-            backgroundColor: '#E8F5E9',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            borderLeft: '4px solid #2E7D32',
-          }}>
-            <p style={{
-              fontSize: '0.95rem',
-              color: 'var(--gray-700)',
-              lineHeight: '1.8',
-              margin: 0,
-            }}>
+          <div className="bg-green-50 p-4 md:p-6 rounded-lg border-l-4 border-green-700">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed m-0">
               <strong>🏢 このカテゴリの使い方：</strong>
               業種によって、口コミの特徴やクレームのパターンは大きく異なります。ご自身の業種に合った記事を参照し、業界特有のポイントを押さえた対応を実践してください。
             </p>
@@ -100,22 +79,11 @@ export default async function IndustrySpecificPage() {
         </section>
 
         <section>
-          <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            color: 'var(--gray-900)',
-            marginBottom: '1.5rem',
-            borderBottom: '2px solid var(--primary-blue)',
-            paddingBottom: '0.5rem',
-          }}>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 border-b-2 border-blue-600 pb-2">
             記事一覧（全{articles.length}件）
           </h2>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-            gap: '1.5rem',
-          }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {articles.map((article) => (
               <ArticleCard
                 key={article.slug}
