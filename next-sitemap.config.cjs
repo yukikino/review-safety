@@ -53,6 +53,24 @@ module.exports = {
       changefreq = 'weekly';
     }
 
+    // Bridge articles
+    if (path.startsWith('/bridge/')) {
+      priority = 0.8;
+      changefreq = 'weekly';
+    }
+
+    // Platform-specific articles
+    if (path.startsWith('/platform-specific/')) {
+      priority = 0.8;
+      changefreq = 'weekly';
+    }
+
+    // Privacy page
+    if (path === '/privacy') {
+      priority = 0.3;
+      changefreq = 'monthly';
+    }
+
     return {
       loc: path,
       changefreq,
