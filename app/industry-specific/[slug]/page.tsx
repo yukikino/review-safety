@@ -1,15 +1,18 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getArticleBySlug, getArticleSlugs, getRelatedArticles } from '@/lib/markdown';
+import { getArticleBySlug, getArticleSlugs, getRelatedArticles, extractFAQs, stripFAQSection } from '@/lib/markdown';
 import { ArticleSchema } from '@/components/article-schema';
 import { BreadcrumbSchema } from '@/components/breadcrumb-schema';
+import { FAQSchema } from '@/components/faq-schema';
+import { FAQAccordion } from '@/components/faq-accordion';
 import { Breadcrumb } from '@/components/breadcrumb';
 import { CTAMeoTool } from '@/components/cta-meo-tool';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SidebarCTA } from '@/components/sidebar-cta';
 import { ArticleViewTracker } from '@/components/analytics/ArticleViewTracker';
 import { ScrollProgress } from '@/components/scroll-progress';
+import { ShareButtons } from '@/components/share-buttons';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -79,7 +82,9 @@ export default async function IndustrySpecificPage({ params }: PageProps) {
     notFound();
   }
 
-  const { frontmatter, htmlContent } = article;
+  const { frontmatter, htmlContent, content } = article;
+  const faqs = extractFAQs(content);
+  const displayHtml = faqs.length > 0 ? stripFAQSection(htmlContent) : htmlContent;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
   const articleUrl = `${siteUrl}/industry-specific/${slug}`;
@@ -113,6 +118,7 @@ export default async function IndustrySpecificPage({ params }: PageProps) {
         datePublished={frontmatter.date}
         url={articleUrl}
       />
+      {faqs.length > 0 && <FAQSchema faqs={faqs} />}
 
       <ScrollProgress />
 
@@ -157,8 +163,23 @@ export default async function IndustrySpecificPage({ params }: PageProps) {
               <div className="card p-4 md:p-8 lg:p-12 mb-6 md:mb-8 animate-fadeInUp">
                 <div
                   className="prose prose-lg max-w-none"
-                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                  dangerouslySetInnerHTML={{ __html: displayHtml }}
                 />
+              </div>
+
+              {/* FAQ表示 */}
+              {faqs.length > 0 && (
+                <div className="card p-4 md:p-8 lg:p-12 mb-6 md:mb-8 animate-fadeInUp">
+                  <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--gray-900)' }}>
+                    よくある質問
+                  </h2>
+                  <FAQAccordion faqs={faqs} />
+                </div>
+              )}
+
+              {/* シェアボタン */}
+              <div className="card p-4 md:p-6 mb-6 md:mb-8 animate-fadeInUp">
+                <ShareButtons url={articleUrl} title={frontmatter.title} />
               </div>
 
               {/* CTA表示 */}

@@ -4,6 +4,12 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import remarkHtml from 'remark-html';
+import remarkInternalLinks from './remark-internal-links';
+
+export interface HowToStep {
+  name: string;
+  text: string;
+}
 
 export interface ArticleFrontmatter {
   title: string;
@@ -15,6 +21,12 @@ export interface ArticleFrontmatter {
   productId?: string;
   affiliateUrl?: string;
   cta?: 'soft' | 'hard' | 'mixed';
+  howto?: {
+    name: string;
+    description: string;
+    totalTime?: string;
+    steps: HowToStep[];
+  };
 }
 
 export interface ProductArticleFrontmatter {
@@ -95,12 +107,17 @@ export async function getArticleBySlug(
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
 
-    // Convert Markdown to HTML with GFM support (tables, strikethrough, etc.)
+    // Convert Markdown to HTML with GFM support and auto internal links
+    const currentUrl = `/${category}/${slug}`;
     const processedContent = await remark()
       .use(remarkGfm)
+      .use(remarkInternalLinks, { currentUrl, maxLinks: 5 })
       .use(remarkHtml)
       .process(content);
-    const htmlContent = processedContent.toString();
+    // Add lazy loading and async decoding to images
+    const htmlContent = processedContent
+      .toString()
+      .replace(/<img /g, '<img loading="lazy" decoding="async" ');
 
     return {
       slug,
@@ -139,7 +156,7 @@ export function extractFAQs(content: string): Array<{
   question: string;
   answer: string;
 }> {
-  const faqRegex = /###\s*Q\d+:\s*(.+?)\n\nA\d+:\s*([\s\S]+?)(?=\n\n###|$)/g;
+  const faqRegex = /###\s*Q\d+[：:]\s*(.+?)\n\n\*\*A\*\*[：:]?\s*([\s\S]+?)(?=\n\n###|\n\n---|$)/g;
   const faqs: Array<{ question: string; answer: string }> = [];
 
   let match;
@@ -151,6 +168,17 @@ export function extractFAQs(content: string): Array<{
   }
 
   return faqs;
+}
+
+/**
+ * Strip FAQ section from HTML content to avoid duplication with FAQAccordion
+ */
+export function stripFAQSection(htmlContent: string): string {
+  // Remove the FAQ section (h2 "よくある質問" and everything until the next h2 or end)
+  return htmlContent.replace(
+    /<h2[^>]*>よくある質問<\/h2>[\s\S]*?(?=<h2[^>]*>|$)/,
+    ''
+  );
 }
 
 /**
@@ -190,6 +218,52 @@ export async function getRelatedArticles(
   });
 
   // スコア順にソート、スコアが同じ場合は日付順
+  scoredArticles.sort((a, b) => {
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+    return new Date(b.article.frontmatter.date).getTime() -
+           new Date(a.article.frontmatter.date).getTime();
+  });
+
+  return scoredArticles.slice(0, limit).map(item => item.article);
+}
+
+/**
+ * Get related articles across all categories based on tags
+ */
+export async function getCrossCategoryRelatedArticles(
+  currentCategory: string,
+  currentSlug: string,
+  currentTags: string[],
+  limit: number = 3
+): Promise<(Article & { category: string })[]> {
+  const categories = ['playbook', 'mild-response', 'escalation', 'industry-specific', 'platform-specific', 'bridge'];
+
+  const allArticles: (Article & { category: string })[] = [];
+
+  for (const category of categories) {
+    const articles = await getAllArticles(category);
+    for (const article of articles) {
+      // 現在の記事を除外
+      if (category === currentCategory && article.slug === currentSlug) continue;
+      allArticles.push({ ...article, category });
+    }
+  }
+
+  // タグの一致数でスコアリング（異なるカテゴリにボーナス）
+  const scoredArticles = allArticles.map(article => {
+    const matchingTags = article.frontmatter.tags.filter(tag =>
+      currentTags.includes(tag)
+    );
+    // 異なるカテゴリからの記事にボーナス（カテゴリ間リンク促進）
+    const crossCategoryBonus = article.category !== currentCategory ? 0.5 : 0;
+    return {
+      article,
+      score: matchingTags.length + crossCategoryBonus,
+    };
+  });
+
   scoredArticles.sort((a, b) => {
     if (b.score !== a.score) {
       return b.score - a.score;

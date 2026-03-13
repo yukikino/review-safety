@@ -1,12 +1,17 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-const inter = Inter({ subsets: ['latin'] });
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+  preload: false,
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://review-safety.com';
 
@@ -81,11 +86,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" style={{ scrollBehavior: 'smooth' }}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
+      <body className={`${notoSansJP.className} flex flex-col min-h-screen`}>
         <GoogleAnalytics />
         <SpeedInsights />
         <Header />
